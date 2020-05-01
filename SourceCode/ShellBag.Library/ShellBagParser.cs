@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using System;
+using Microsoft.Win32;
 using ShellBag.Library.ShellBags;
 
 // NOTES:
@@ -12,7 +13,7 @@ namespace ShellBag.Library
     /// <summary>
     /// Die <see cref="ShellBagParser"/>-Klasse dient zum Auslesen der spezifischen ShellBag-Registry-Pfade.
     /// </summary>
-    internal class ShellBagParser
+    public class ShellBagParser
     {
         private readonly string _sid;
         private const string NtUserPath = @"\Software\Microsoft\Windows\Shell\BagMRU";
@@ -21,12 +22,12 @@ namespace ShellBag.Library
         /// <summary>
         /// Zählt die Gesamtanzahl aller Knoten je <see cref="ShellBagParser"/>-Klasse
         /// </summary>
-        internal int NodesCount { get; private set; }
+        public int NodesCount { get; private set; }
 
         /// <summary>
         /// Enumeration für die möglichen Suchpfade
         /// </summary>
-        internal enum PathEnum
+        public enum PathEnum
         {
             NtUser,
             UsrClass
@@ -36,8 +37,16 @@ namespace ShellBag.Library
         /// Klasse zum Auslesen der Ordneraktivität unter Angabe eines bestimmten Benutzers, basierend seiner SID.
         /// </summary>
         /// <param name="sid">SID des zu traversierenden Benutzers aus der Registry</param>
-        internal ShellBagParser(string sid)
+        public ShellBagParser(string sid)
         {
+            if (sid == null)
+            {
+                throw new ArgumentNullException(nameof(sid));
+            }
+            else if (string.IsNullOrEmpty(sid))
+            {
+                throw new ArgumentException($"Der Parameter {nameof(sid)} darf nicht leer sein!");
+            }
             _sid = sid;
         }
 
@@ -46,7 +55,7 @@ namespace ShellBag.Library
         /// </summary>
         /// <param name="searchEnum">Enumeration zur Angabe des zu traversierenden Pfades.</param>
         /// <returns><see cref="ShellBagNode"/></returns>
-        internal ShellBagNode LoadOnDemand(PathEnum searchEnum)
+        public ShellBagNode LoadOnDemand(PathEnum searchEnum)
         {
             var rootKey = searchEnum == PathEnum.NtUser ? Registry.Users.OpenSubKey(_sid + NtUserPath) : Registry.Users.OpenSubKey(_sid + UsrClassPath);
             return RecursiveTraverse(rootKey, null, false);
@@ -57,7 +66,7 @@ namespace ShellBag.Library
         /// </summary>
         /// <param name="searchEnum">Enumeration zur Angabe des zu traversierenden Pfades.</param>
         /// <returns><see cref="ShellBagNode"/></returns>
-        internal ShellBagNode LoadWithData(PathEnum searchEnum)
+        public ShellBagNode LoadWithData(PathEnum searchEnum)
         {
             var rootKey = searchEnum == PathEnum.NtUser ? Registry.Users.OpenSubKey(_sid + NtUserPath) : Registry.Users.OpenSubKey(_sid + UsrClassPath);
             return RecursiveTraverse(rootKey, null, true);

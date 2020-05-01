@@ -7,7 +7,7 @@ namespace ShellBag.Library.ShellBags
     /// <summary>
     /// Abgeleitete Klasse von <see cref="Dictionary{TKey,TValue}"/>, welche die Knoten und deren Kindknoten speichert.
     /// </summary>
-    internal class ShellBagNode : Dictionary<int, ShellBagNode>
+    public class ShellBagNode : Dictionary<int, ShellBagNode>
     {
         private static int counter = 0;
 
@@ -15,7 +15,7 @@ namespace ShellBag.Library.ShellBags
         /// Ein nur lesbares Byte-Array, welches die Daten für den Kindknoten vom Elternknoten speichert.
         /// <para>Basierend der Daten aus der Registry vom Typ REG_BINARY.</para>
         /// </summary>
-        internal byte[] RawBinaryData { get; }
+        public byte[] RawBinaryData { get; }
 
         /// <summary>
         /// Parameterloser Konstruktor für die Klasse <see cref="ShellBagNode"/>.
@@ -23,13 +23,13 @@ namespace ShellBag.Library.ShellBags
         /// <see cref="RawBinaryData"/> wird auf <see langword="null"/> gesetzt.
         /// </para>
         /// </summary>
-        internal ShellBagNode() => RawBinaryData = null;
+        public ShellBagNode() => RawBinaryData = null;
 
         /// <summary>
         /// Der Konstruktor für die Klasse <see cref="ShellBagNode"/>.
         /// </summary>
         /// <param name="data">Die zu speichernden binäre Daten</param>
-        internal ShellBagNode(byte[] data)
+        public ShellBagNode(byte[] data)
         {
             RawBinaryData = data;
             if (data != null)
@@ -38,13 +38,13 @@ namespace ShellBag.Library.ShellBags
             }
         }
 
-        private void AnalyzeData()
+        public void AnalyzeData()
         {
             if (counter == 2)
             {
                 var subset = RawBinaryData.Skip(5).Take(29);
                 var lengthArray = RawBinaryData.Take(2);
-                var length = BitConverter.ToInt16(lengthArray.ToArray(),0);
+                var length = BitConverter.ToInt16(lengthArray.ToArray(), 0);
                 var text = System.Text.Encoding.UTF8.GetString(subset.ToArray());
                 Console.WriteLine("Größe: " + length + " / Text: " + text);
             }

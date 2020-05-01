@@ -8,13 +8,13 @@ namespace ShellBag.Library.ShellBags
     /// <summary>
     /// Hilfklasse für ShellBag-spezifische Funktionen.
     /// </summary>
-    internal static class ShellBagHelper
+    public static class ShellBagHelper
     {
         /// <summary>
         /// Lade die verfügbaren User-SIDs aus der Registry.
         /// </summary>
         /// <returns>Gebe bei Erfolg ein <see cref="IDictionary{TKey, TValue}"/> zurück. Ansonsten <see langword="null"/>.</returns>
-        internal static IDictionary<string, string> LoadSiDsParallel()
+        public static IDictionary<string, string> LoadSiDsParallel()
         {
             var allUsers = Microsoft.Win32.Registry.Users.GetSubKeyNames();
             var localUsers = new Dictionary<string, string>();
@@ -52,7 +52,7 @@ namespace ShellBag.Library.ShellBags
         /// </summary>
         /// <param name="sid">Die SID des Benutzers</param>
         /// <returns>Sollte ein Benutzer gefunden worden sein, so gebe den Namen zurück, andernfalls einen leeren String.</returns>
-        private static string GetAccountFromSid(string sid)
+        public static string GetAccountFromSid(string sid)
         {
             string account;
             try
