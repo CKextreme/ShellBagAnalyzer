@@ -1,0 +1,147 @@
+% This is the main tex file
+% Please leave the following settings unchanged!
+% ___________________________________________________________________
+\documentclass{scrartcl}%
+
+
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{ngerman} 
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{graphicx}
+\usepackage{url}
+
+
+%  Definition of some mathematical environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\parindent 0.0mm
+\geometry{a4paper,left=30mm,right=25mm, top=25mm, bottom=2cm}
+
+% ___________________________________________________________________
+% ___________________________________________________________________
+
+
+\begin{document}
+	\title{Softwarepraktikum: \\ 
+		Implementierung eines Tools zur forensischen Analyse von ShellBags unter Windows 10}
+	\author{Conny Karras und Anna-Lena Totzauer
+		\\
+		\\ \small{Cybercrime/Cybersecurity, CY19wC-M}
+		\\ \small{Betreuer: Prof. Dr. rer. nat. Labudde}
+		\\ \small{Bearbeitungszeitraum: April 2020 - Juli 2020}
+		\\ \footnotesize{}}
+
+   	\date{}
+	\maketitle
+ 	\thispagestyle{empty}
+
+	 \newpage 
+	 \tableofcontents
+	 \thispagestyle{empty}
+	
+	 \newpage
+	 \pagenumbering{Roman}
+	 \listoffigures
+	 \addcontentsline{toc}{section}{Abbildungsverzeichnis}
+	 
+	 \listoftables
+	 \addcontentsline{toc}{section}{Tabellenverzeichnis}
+	 \newpage
+	 
+	 \pagenumbering{arabic}
+
+	
+	
+	% Aufgabenstellung und Motivation
+	\input{part/aufgabe_motivation.tex}
+	%Zielsetzung, Motivation
+	
+	% Grundlagen ShellBags
+	\input{part/grundlagen.tex}
+	%Shellbags Eintrag, Speicherort,...
+	
+	%Qualitätsanforderungen
+	\input{part/anforderungen.tex}
+
+	% Implementierung
+	\input{part/implementierung.tex}
+	
+	% Bedienungsanleitung
+	\input{part/bedienung.tex}
+	
+	% Validierung
+	\input{part/validierung.tex}
+	
+	% Diskussion
+	\input{part/diskussion.tex}
+	
+	% Ergebnisse und Diskussion
+	\input{part/fazit.tex}
+
+	% Ausblick
+	\input{part/ausblick.tex}
+	\newpage
+	% Literatur
+	\bibliographystyle{alpha}
+	\bibliography{Literatur}
+	\addcontentsline{toc}{section}{Literaturverzeichnis}
+	
+	\newpage
+	\thispagestyle{empty}
+	\section*{Selbstständigkeitserklärung}
+	\vspace{15mm}
+	
+	Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig und nur unter Verwendung der angegebenen
+	Quellen und Hilfsmittel angefertigt habe. Sämtliche Stellen der Arbeit, die im Wortlaut oder dem Sinn nach
+	Publikationen oder Vorträgen anderer Autoren entnommen sind, habe ich als solche kenntlich gemacht. Diese
+	Arbeit wurde in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegt oder anderweitig
+	veröffentlicht.
+	
+	\vspace{2cm}
+	
+	\begin{tabular}{lp{2em}l}
+		\hspace{4cm} && \hspace{7cm} \\ \cline{1-1}\cline{3-3} \\
+		Ort, Datum && Unterschrift
+	\end{tabular}
+	\vspace{1cm}
+
+	\begin{tabular}{lp{2em}l}
+	\hspace{4cm} && \hspace{7cm} \\ \cline{1-1}\cline{3-3} \\
+	Ort, Datum && Unterschrift
+	\end{tabular}
+
+\end{document}

@@ -1,0 +1,21 @@
+\section{Qualitätsanforderungen}
+Nachfolgend werden die Qualitätsanforderungen an das Tool erläutert, welche bei der Implementierung berücksichtigt werden müssen, um eine optimale Eignung gewährleisten zu können.
+\paragraph{Kompabilität des Tools:}
+Eine Live-Analyse der ShellBags ist nur auf einem Windows-Betriebssystem möglich, da sie als Teil der Registry nur in Windows-Systemen existieren. Eine Post-Mortem-Analyse der ShellBags mit dem implementierten Tool wird ebenfalls nur auf Windows-Betriebssystemen möglich sein aufgrund der Nutzung des .NET Frameworks, welches nur unter Windows lauffähig ist \cite{netfw}.
+%lauffähigkeit vllt irrelevant, da nur onlineanalyse betrachtet werden
+\paragraph{Sicherheit/Integrität:}
+Im lesenden Modus der ShellBags aus der Windows-Registry dürfen Einträge nicht manipuliert, gelöscht oder eingefügt werden. Im Löschmodus darf keine fehlerhafte Löschung von Einträgen in der Registry erfolgen, da so die Funktionsfähigkeit des Systems eingeschränkt werden könnte.
+\paragraph{Zuverlässigkeit:}
+Aus forensischer Sicht soll das Tool auch bei einer größeren Registry oder fehlerhaften Einträgen eine zuverlässige Analyse und auch bei Fehlern einen gewissen Teil-Output ermöglichen.
+\paragraph{Benutzerfreundlichkeit:}
+Das Programm sollte einfach gestaltet sein und auch Menschen mit geringen Kenntnissen über ShellBags einen leichten Einstieg ermöglichen.
+\paragraph{Leistungseffizienz:}
+Das Tool soll seine Ergebnisse nach einem angemessenen Zeitrahmen präsentieren können.
+\paragraph{Portabilität:}
+Es soll gewährleistet werden, dass die Software schnell zwischen mehreren Rechnern portiert werden kann, ohne dass dafür spezielle Installationen notwendig sind.
+
+
+
+
+
+

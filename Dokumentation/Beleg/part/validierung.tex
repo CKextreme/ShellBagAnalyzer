@@ -1,0 +1,38 @@
+\section{Validierung}
+Um das implementierte Tool zu testen, wird eine virtuelle Maschine verwendet. Hierfür war es zunächst notwendig, die Virtualisierungssoftware VirtualBox \footnote{Download unter \url{https://www.chip.de/downloads/VirtualBox_23814448.html}, zuletzt verfügbar am 16.04.2020}  herunterzuladen. Im Anschluss war es möglich, bei Microsoft eine bereits fertige virtuelle Maschine (VM) mit Windows 10 als 90 Tage lang kostenlose Version \footnote{Download unter \url{https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/}, zuletzt verfügbar am 16.04.2020}  herunterzuladen. Diese VM kann nach dem Entpacken problemlos in VirtualBox importiert und ausgeführt werden. \\
+%welche Einstellungen noch vorgenommen, noch was installiert?, wie das Tool reingebkommen 
+\\
+Um zu testen, ob das Tool eine korrekte Auswertung der ShellBag-Informationen vornimmt, wird im Folgenden eine Testreihe durchgeführt. Zunächst wurde die SID des aktuell angemeldeten Benutzers mit dem Befehl \glqq \texttt{whoami /user}\grqq{} in der Eingabeaufforderung bestimmt, um im Tool den richtigen Benutzer auszuwählen. Da während der Installation und Konfiguration der virtuellen Maschine bereits ShellBag-Informationen entstanden sind, wurden zunächst die aktuellen ShellBag-Informationen des Benutzers im Tool ausgegeben und in der nachfolgenden Abbildung festgehalten. \\
+\\
+Basierend auf diesem Ergebnis wurde nun eine Testreihe aufgestellt und eine erneute Auswertung im Tool vergenommen. Die nachfolgende Tabelle \ref{akt} zeigt die durchgeführten Aktivitäten mit den entsprechenden Zeitangaben. Diese Zeiten wurden entsprechend in der Systemsteuerung eingestellt.
+
+\begin{longtable}{|p{0.3\textwidth}|p{0.6\textwidth}|}
+	\caption{Testreihe für Ordneraktivitäten} \label{akt} \vspace{1em} \\
+	\hline
+	\cellcolor{gray!25}\textbf{Zeit} & \cellcolor{gray!25}\textbf{Aktivität} \\
+	\hline
+	03.06.2020 14:00 Uhr & Anlegen eines Ordners \glqq test\grqq{} \\
+	\hline
+	03.06.2020 14:05 Uhr & Öffnen und Schließen des Ordners \glqq test\grqq{} \\
+	\hline
+	04.06.2020 15:00 Uhr & Anlegen eines Ordners \glqq studium\grqq{} \\
+	\hline
+	04.06.2020 15:10 Uhr & Öffnen und Schließen des Ordners \glqq studium\grqq{} \\
+	\hline
+	05.06.2020 16:00 Uhr & Anlegen eines Unterordners \glqq softwareprojekt\grqq{} \\
+	\hline
+	05.06.2020 16:25 Uhr & Öffnen und Schließen des Ordners \glqq softwareprojekt\grqq{} \\
+	\hline
+	06.06.2020 10:00 Uhr & Standardordner je nachdem (root und volume je) \\
+	\hline
+\end{longtable}
+\vspace{1em}
+
+%Auswertung, ist Unterordner unter Ordner?, stimmen die Informationen wie Zeitstempel etc --> alles abgleichen aus Tabellen, Fehler?, Screenshot zeigen, stimmt Zuordnung Value - Subkey?, kurzes Fazit
+
+%Nun wurde die im Tool integrierte Export-Funktion getestet. Dafür wurden die aus der Testreihe ausgegeben ShellBag-Informationen exportiert. \\
+%Test, die Infos zu exportieren mit Screenshot, wie vorgehen, welches Format
+%\\
+%Im letzten Schritt wurde die Lösch-Funktion des Tools getestet. Dafür wurden die in der Testreihe entstandenen ShellBag-Informationen gelöscht. Im Anschluss wurde der Registrierungs-Editor geöffnet, um zu überprüfen, ob die ShellBag-Informationen des angemeldeten Benutzers unter \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Classes$\backslash$Local Settings$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$Shell$\backslash$BagMRU} tatsächlich entfernt wurden.
+
+%Test, die ShellBags zu löschen, wie vorgehen, evtl Screenshot der Registry

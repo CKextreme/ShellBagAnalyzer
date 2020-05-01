@@ -1,0 +1,78 @@
+% This is the main tex file
+% Please leave the following settings unchanged!
+% ___________________________________________________________________
+\documentclass{scrartcl}%
+
+
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{graphicx}
+\usepackage{geometry}
+%\usepackage{hyperref}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{ngerman} 
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage[onehalfspacing]{setspace}
+
+%  Definition of some mathematical environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\parindent 0.0mm
+\geometry{a4paper,left=30mm,right=25mm, top=25mm, bottom=2cm}
+
+% ___________________________________________________________________
+% ___________________________________________________________________
+
+
+\begin{document}
+	\title{Ablaufplan zum Softwarepraktikum: \\ Implementierung eines Tools zur forensischen Analyse von ShellBags unter Windows 10}
+	\author{Conny Karras und Anna-Lena Totzauer
+		\\
+		\\ \small{Cybercrime/Cybersecurity, CY19wC-M}
+		\\ \small{Betreuer: Prof. Dr. rer. nat. Labudde}
+		\\ \small{Bearbeitungszeitraum: April 2020 - Juli 2020}
+		\\ \footnotesize{}}
+
+	\date{}
+	\maketitle
+	
+
+	% Thema
+	\input{part/thema.tex}
+
+	% Arbeistplan
+	\input{part/arbeitsplan.tex}
+	
+	% Umsetzung
+	\input{part/umsetzung.tex}
+
+
+\end{document}

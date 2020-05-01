@@ -1,0 +1,9 @@
+\section{Aufgabenstellung und Motivation}
+
+Dr. Edmund Locards Austauschprinzip \glqq Every contact leaves a trace\grqq{} wurde ursprünglich für die reale Welt formuliert. Doch auch in der digitalen Welt hinterlassen Aktivitäten Spuren auf einem System. Hierbei werden unter anderem Einträge in der Windows-Registry vorgenommen. \cite[S.5]{carvey2011windows} 
+
+Die sogenannten ShellBags sind ein Teil dieser Registrierungsdatenbank. Sie speichern zum einen Einstellungen wie Fenstergröße, Position und Ansichtseinstellungen, zum anderen wird ein Eintrag angelegt, sobald ein Ordner erstellt und geöffnet wurde. \cite[S.26]{kavrestad2018fundamentals} 
+
+Welche Informationen die ShellBag-Registrierungsschlüssel speichern, wie sie aufgebaut und im Klartext zu verstehen sind, wurde bereits in der Bachelorarbeit von Anna-Lena Totzauer zum Thema \glqq Forensische Analyse von Windows ShellBags\grqq{} genauer untersucht. Basierend auf dieser Arbeit soll nun im Rahmen eines Softwarepraktikums ein Tool entwickelt werden, welches eine forensische Analyse von ShellBags unter Windows 10 ermöglicht. Dafür sollen die in der Registry enthaltenen Informationen in einer für den Menschen unmittelbar lesbaren Form dargestellt werden. Darüber hinaus soll es möglich sein, die gefundenen Einträge zu exportieren sowie aus der Registry zu löschen. Mithilfe dieses Tools soll die Analyse der ShellBags erleichtert werden, da sie so nicht mehr händisch ausgelesen werden müssen. Dies führt auch zu einer Vermeidung von menschlichen Fehlern.  Darüber hinaus können die gewonnenen Informationen durch einen Export gesichert werden. \newline
+Nachfolgend werden zunächst die theoretischen Grundlagen für ShellBags unter Windows 10 aufgegriffen. Darauf folgt die praktische Umsetzung sowie die Validierung des Tools. Für die Testphase wird eine virtuelle Maschine aufgesetzt, in der das Tool auf Eignung geprüft werden soll. 
+
