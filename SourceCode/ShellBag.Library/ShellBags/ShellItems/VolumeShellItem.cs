@@ -1,9 +1,22 @@
-﻿namespace ShellBag.Library.ShellBags.ShellItems
+﻿using System;
+using System.Linq;
+
+namespace ShellBag.Library.ShellBags.ShellItems
 {
-    internal class VolumeShellItem : ShellItem
+    public class VolumeShellItem : ShellItem
     {
-        public VolumeShellItem(byte size, byte type): base(size, type)
+        public VolumeShellItem(ushort size, byte type, byte[] data): base(size, type, data)
         {
+            AnalyzeData();
+        }
+
+        public override void AnalyzeData()
+        {
+            const int skip = 3; // offset from size, class type
+            var take = Size - skip;
+            var name = Data.Skip(skip).Take(take);
+
+            //Console.WriteLine(System.Text.Encoding.UTF8.GetString(name.ToArray()));
         }
     }
 }

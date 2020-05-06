@@ -3,10 +3,7 @@ using Microsoft.Win32;
 using ShellBag.Library.ShellBags;
 
 // NOTES:
-// - Shell Items (Class Type Indicator):
-// - File Entry Shell Items (vom Benutzer angelegte Ordner, ZIPs)
-// - Root Folder und Volume Shell Item
-// - Einlesen im Little-Endian-Format
+// Example Bitmask: 0x23 and bitmask with 0x70 = 0x20
 
 namespace ShellBag.Library
 {

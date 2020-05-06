@@ -115,7 +115,6 @@
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
             this.beendenToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
-            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.BeendenToolStripMenuItem_Click);
             // 
             // uebertoolStripMenuItem
             // 
@@ -123,7 +122,6 @@
             this.uebertoolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.uebertoolStripMenuItem.Text = "Über";
             this.uebertoolStripMenuItem.ToolTipText = "Über das Programm";
-            this.uebertoolStripMenuItem.Click += new System.EventHandler(this.UebertoolStripMenuItem_Click);
             // 
             // splitContainer
             // 
@@ -161,6 +159,7 @@
             // 
             // treeView1
             // 
+            this.treeView1.CheckBoxes = true;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.HotTracking = true;
@@ -260,10 +259,10 @@
         private System.Windows.Forms.Label TreeViewHintLabel;
         private System.Windows.Forms.Label dataGridViewHintLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label accountLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusCountLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLoadTimeLabel;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

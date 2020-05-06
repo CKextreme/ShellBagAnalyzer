@@ -1,8 +1,11 @@
-﻿namespace ShellBag.Library.ShellBags.ShellItems
+﻿using System;
+
+namespace ShellBag.Library.ShellBags.ShellItems
 {
     internal interface IShellItem
     {
-        byte Size { get; }
+        ushort Size { get; }
         byte ClassType { get; }
+        void AnalyzeData();
     }
 }
