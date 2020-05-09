@@ -61,7 +61,7 @@
             this.toolStripStatusLoadTimeLabel});
             this.statusStrip1.Location = new System.Drawing.Point(5, 439);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(724, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(874, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -77,7 +77,7 @@
             this.toolStripStatusCountLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusCountLabel.Name = "toolStripStatusCountLabel";
             this.toolStripStatusCountLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripStatusCountLabel.Size = new System.Drawing.Size(605, 17);
+            this.toolStripStatusCountLabel.Size = new System.Drawing.Size(755, 17);
             this.toolStripStatusCountLabel.Spring = true;
             this.toolStripStatusCountLabel.Text = "Count:";
             this.toolStripStatusCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -98,7 +98,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(5, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(724, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(874, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -140,8 +140,8 @@
             // 
             this.splitContainer.Panel2.Controls.Add(this.dataGridViewHintLabel);
             this.splitContainer.Panel2.Controls.Add(this.dataGridView);
-            this.splitContainer.Size = new System.Drawing.Size(724, 385);
-            this.splitContainer.SplitterDistance = 300;
+            this.splitContainer.Size = new System.Drawing.Size(874, 385);
+            this.splitContainer.SplitterDistance = 362;
             this.splitContainer.SplitterIncrement = 5;
             this.splitContainer.SplitterWidth = 2;
             this.splitContainer.TabIndex = 3;
@@ -152,7 +152,7 @@
             this.TreeViewHintLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreeViewHintLabel.Location = new System.Drawing.Point(0, 0);
             this.TreeViewHintLabel.Name = "TreeViewHintLabel";
-            this.TreeViewHintLabel.Size = new System.Drawing.Size(300, 385);
+            this.TreeViewHintLabel.Size = new System.Drawing.Size(362, 385);
             this.TreeViewHintLabel.TabIndex = 1;
             this.TreeViewHintLabel.Text = "keine Registry geladen...";
             this.TreeViewHintLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -167,7 +167,7 @@
             this.treeView1.ItemHeight = 20;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(300, 385);
+            this.treeView1.Size = new System.Drawing.Size(362, 385);
             this.treeView1.TabIndex = 0;
             // 
             // dataGridViewHintLabel
@@ -176,7 +176,7 @@
             this.dataGridViewHintLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewHintLabel.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewHintLabel.Name = "dataGridViewHintLabel";
-            this.dataGridViewHintLabel.Size = new System.Drawing.Size(422, 385);
+            this.dataGridViewHintLabel.Size = new System.Drawing.Size(510, 385);
             this.dataGridViewHintLabel.TabIndex = 2;
             this.dataGridViewHintLabel.Text = "keine Registry geladen...";
             this.dataGridViewHintLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -192,7 +192,7 @@
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(422, 385);
+            this.dataGridView.Size = new System.Drawing.Size(510, 385);
             this.dataGridView.TabIndex = 0;
             // 
             // comboBox1
@@ -221,7 +221,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 461);
+            this.ClientSize = new System.Drawing.Size(884, 461);
             this.Controls.Add(this.accountLabel);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.splitContainer);

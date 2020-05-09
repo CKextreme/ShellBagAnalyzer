@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ShellBag.Library.ShellBags;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShellBag.UnitTests
 {
@@ -10,8 +8,7 @@ namespace ShellBag.UnitTests
         [TestMethod]
         public void CreateInstance()
         {
-            var node1 = new ShellBagNode();
-            var node2 = new ShellBagNode(null);
+            var node1 = new Library.ShellBags.ShellBagNode();
             Assert.IsNull(node1.RawBinaryData);
         }
     }

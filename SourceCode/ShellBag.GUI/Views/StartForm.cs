@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using ShellBag.Library;
+﻿using ShellBag.Library;
 using ShellBag.Library.ShellBags;
 using ShellBag.Library.ShellBags.ShellItems;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using ShellBag.Library.ShellBags.Logging;
+using ShellBag.Library.ShellBags.ShellItems.Others;
 
 // TODO: Elternknoten-Selektierung hakt alle Kindknoten ab
 
@@ -119,7 +120,7 @@ namespace ShellBag.GUI.Views
 
             if (_sidDictionary.Count == 0)
             {
-                
+
                 toolStripStatusLabel.Text = "Leere Combobox"; //Resources.StartForm_InitComboBox_Zero;
                 return;
             }
@@ -161,12 +162,9 @@ namespace ShellBag.GUI.Views
 
             int global_count = 0;
 
-            // temp ------------------------------
-            ShellBagNode result = null;
-
             foreach (var path in path_enums)
             {
-                result = parser.LoadWithData(path);
+                var result = parser.LoadWithData(path);
                 global_count += parser.NodesCount;
                 TreeNode root = null;
                 var rootName = Enum.GetName(typeof(ShellBagParser.PathEnum), path);
@@ -187,28 +185,24 @@ namespace ShellBag.GUI.Views
 
         private void GenerateRecursiveTreeView(ref TreeNode root, ref ShellBagNode nodes, ref string rootName)
         {
-            if (root == null)
-            {
-                root = new TreeNode { Text = rootName + @".dat\BagMRU" };
-            }
+            // if null then
+            root ??= new TreeNode { Text = rootName + @".dat\BagMRU" };
 
             foreach (var node in nodes)
             {
                 var child = new TreeNode();
-                // testweise den binären Text aus dem Elternknoten, welches dem zugehörigen Kind gehört
 
-                var temp = node.Value.RawBinaryData != null ? BitConverter.ToString(node.Value.RawBinaryData) : node.Key.ToString();
-
-                if (nodes.ShellItem is NetworkLocationShellItem networkitem)
+                // demo output for the nodes
+                var temp = $"{node.Key}: ";
+                temp += node.Value.ShellItem switch
                 {
-                    temp = networkitem.Names.UncPath;
-                }
-                else if (nodes.ShellItem is VolumeShellItem volumeitem)
-                {
-                    // temp = volumeitem.???;
-                }
-
-
+                    NetworkLocationShellItem networkitem => "NetworkLocationShellItem: " + networkitem.Names.UncPath + $" ({networkitem.Names.MicrosoftNetwork} | Description: {(string.IsNullOrEmpty(networkitem.Names.Description) ? "-" : networkitem.Names.Description)})",
+                    VolumeShellItem volumeitem => $"VolumeItem-Type - DriveLetter: {(string.IsNullOrEmpty(volumeitem.DriveLetter) ? "/" : volumeitem.DriveLetter)}",
+                    RootFolderShellItem rootItem => Enum.IsDefined(typeof(SortIndex), rootItem.SortIndex) ? $"SortIndex: {rootItem.SortIndex} / Guid: {rootItem.GlobalId}" : $"SortIndex (unbekannt!): {string.Format("0x{0:X2}", rootItem.SortIndex)}",
+                    FileEntryShellItem fileItem => Enum.IsDefined(typeof(FileEntryClassType), fileItem.ClassType) ? "FileEntryShellItem: " + string.Format("0x{0:X2}", (int)fileItem.ClassType) + $" / PrimaryName: {fileItem.PrimaryName}" + $" / DateTime (Demo): {fileItem.ModificationDateTime}" : "FileEntryShellItem (unbekannt!): " + string.Format("0x{0:X2}", (int)fileItem.ClassType),
+                    UnknownShellItem unknowItem => "Unknown ShellItem!" + $" Classtype: {string.Format("0x{0:X2}", unknowItem.ClassType)}",
+                    _ => "Default Text - dürfte nicht sein!"
+                };
                 child.Text = temp;
                 var nextNode = node.Value;
                 GenerateRecursiveTreeView(ref child, ref nextNode, ref rootName);

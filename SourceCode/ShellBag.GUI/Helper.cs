@@ -1,26 +1,24 @@
 ﻿using System.Security.Principal;
 
-namespace ShellBag
+namespace ShellBag.GUI
 {
     /// <summary>
-    /// Hilfsklasse für hilfreiche Methoden.
+    /// Helpful class with some basic independent functions.
     /// </summary>
     internal static class Helper
     {
         /// <summary>
-        /// Prüfe ob das Programm mit Administratorrechten gestartet wurde.
+        /// Checks if the program ist is started with admin permissions.
         /// <para>
-        /// Quelle: <seealso href="https://stackoverflow.com/a/5953294"/>
+        /// Sources: <seealso href="https://stackoverflow.com/a/5953294"/>
         /// </para>
         /// </summary>
-        /// <returns>True wenn Programm mit Adminrechten gestartet. Andernfalls false.</returns>
+        /// <returns>True if program started as admin. Otherwise false.</returns>
         internal static bool CheckAdminRights()
         {
-            using (var identity = WindowsIdentity.GetCurrent())
-            {
-                var principal = new WindowsPrincipal(identity);
-                return principal.IsInRole(WindowsBuiltInRole.Administrator);
-            }
+            using var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }

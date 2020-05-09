@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShellBag.Library.ShellBags.ShellItems
+﻿namespace ShellBag.Library.ShellBags.ShellItems
 {
     public abstract class ShellItem : IShellItem
     {
@@ -15,9 +13,6 @@ namespace ShellBag.Library.ShellBags.ShellItems
             Data = data;
         }
 
-        // Temp
-        public ShellItem Item { get; }
-
-        public abstract void AnalyzeData();
+        protected abstract void AnalyzeData();
     }
 }

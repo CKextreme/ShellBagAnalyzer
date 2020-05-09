@@ -17,6 +17,14 @@ namespace ShellBag.Library.ShellBags
         /// <para>Basierend der Daten aus der Registry vom Typ REG_BINARY.</para>
         /// </summary>
         public byte[] RawBinaryData { get; }
+        /// <summary>
+        /// Abstrakte Klasse um einen der abgeleiteten Sonderfälle widerzuspiegeln.
+        /// <para>
+        /// Siehe hierfür:
+        /// <seealso cref="RootFolderShellItem"/>, <seealso cref="VolumeShellItem"/>, <seealso cref="FileEntryShellItem"/>, <seealso cref="NetworkLocationShellItem"/>
+        /// </para>
+        /// </summary>
+        public ShellItem ShellItem { get; }
 
         /// <summary>
         /// Parameterloser Konstruktor für die Klasse <see cref="ShellBagNode"/>.
@@ -39,10 +47,6 @@ namespace ShellBag.Library.ShellBags
             }
         }
 
-        // Test Fields
-        public static Dictionary<byte,string> dict = new Dictionary<byte,string>();
-        public ShellItem ShellItem { get; }
-
         private ShellItem AnalyzeShellItemType()
         {
             // All class types as output from earlier read from my computer:
@@ -54,69 +58,25 @@ namespace ShellBag.Library.ShellBags
             ShellItem shellitem = null;
             switch (classType)
             {
-                // Root Folder Shell Item
                 case 0x1F:
                     shellitem = new RootFolderShellItem(itemSize, classType, data);
                     break;
-                // File Entry Shell Item
-                // 0x31 - Folder
-                // 0x32 Zip-File
                 case 0x31:
                 case 0x32:
                     shellitem = new FileEntryShellItem(itemSize, classType, data);
                     break;
-                // Volume Shell Item
-                case byte _ when (classType >= 0x20 && classType <= 0x2F ):
+                case { } when (classType >= 0x20 && classType <= 0x2F ):
                     shellitem = new VolumeShellItem(itemSize, classType, data);
                     break;
-                // Network Location Shell Item
-                // more types seen, but not by us
                 case 0xC3:
                     shellitem = new NetworkLocationShellItem(itemSize, classType, data);
                     break;
                 default:
-                    //Console.WriteLine("Unbekannter ClassType");
+                    shellitem = new UnknownShellItem(itemSize, classType, data);
                     break;
             }
 
             return shellitem;
-
-            //ShellItem test = new RootFolderShellItem(classType,classType);
-            //if (test is RootFolderShellItem)
-            //{
-            //    ((RootFolderShellItem)test).Test();
-            //}
-
-            //switch (classType)
-            //{
-            //    case 0x31:
-            //        Console.WriteLine("0x31 Hex");
-            //        break;
-            //    default:
-            //        var arr = new[] {classType};
-
-            //        if (!dict.ContainsKey(classType))
-            //        {
-            //            dict.Add(classType,BitConverter.ToString(arr));
-            //        }
-            //        //Console.WriteLine("unbekannter ClassType: " + BitConverter.ToString(arr));
-            //        break;
-            //}
-
-            //if (counter == 2)
-            //{
-            //    var subset = RawBinaryData.Skip(5).Take(29);
-            //    var lengthArray = RawBinaryData.Take(2);
-            //    var length = BitConverter.ToInt16(lengthArray.ToArray(), 0);
-            //    var text = System.Text.Encoding.UTF8.GetString(subset.ToArray());
-            //    Console.WriteLine("Größe: " + length + " / Text: " + text);
-            //}
-            //counter++;
-
-
-            // .Net Framework - no Span<T>, only in .Net Core
-            //var length = BitConverter.ToInt16(new[] {RawBinaryData[0], RawBinaryData[1]}, 0);
-            //Console.WriteLine(length);
         }
     }
 }

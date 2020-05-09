@@ -1,0 +1,51 @@
+# Notes:
+- NTFS is little-endian (Source?)
+- System.BitConverter is checking if Byte-Array is Little-Endian and reverse the order
+
+// Source: https://en.wikipedia.org/wiki/Control_character#Transmission_control
+// "The start of text character (STX) marked the end of the header, and the start of the textual part of a stream"
+// 0x0002 (ASCII Table)
+// 0x00 - mark es End of String (e.g. C - lang)
+// "All values except strings are stored in little endian order" (Wikipedia: NTFS) - other sources???
+
+# Examples:
+- Bitmask: 0x23 and bitmask with 0x70 = 0x20
+
+# SourceCode:
+
+//ShellItem test = new RootFolderShellItem(classType,classType);
+            //if (test is RootFolderShellItem)
+            //{
+            //    ((RootFolderShellItem)test).Test();
+            //}
+
+            //switch (classType)
+            //{
+            //    case 0x31:
+            //        Console.WriteLine("0x31 Hex");
+            //        break;
+            //    default:
+            //        var arr = new[] {classType};
+
+            //        if (!dict.ContainsKey(classType))
+            //        {
+            //            dict.Add(classType,BitConverter.ToString(arr));
+            //        }
+            //        //Console.WriteLine("unbekannter ClassType: " + BitConverter.ToString(arr));
+            //        break;
+            //}
+
+            //if (counter == 2)
+            //{
+            //    var subset = RawBinaryData.Skip(5).Take(29);
+            //    var lengthArray = RawBinaryData.Take(2);
+            //    var length = BitConverter.ToInt16(lengthArray.ToArray(), 0);
+            //    var text = System.Text.Encoding.UTF8.GetString(subset.ToArray());
+            //    Console.WriteLine("Größe: " + length + " / Text: " + text);
+            //}
+            //counter++;
+
+
+            // .Net Framework - no Span<T>, only in .Net Core
+            //var length = BitConverter.ToInt16(new[] {RawBinaryData[0], RawBinaryData[1]}, 0);
+            //Console.WriteLine(length);

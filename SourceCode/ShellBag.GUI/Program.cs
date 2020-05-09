@@ -5,23 +5,21 @@ using ShellBag.GUI.Views;
 namespace ShellBag.GUI
 {
     /// <summary>
-    /// Programm-Einstiegspunkt-Klasse.
+    /// Program entrypoint class.
     /// </summary>
     internal static class Program
     {
         /// <summary>
-        /// Der Haupteinstiegspunkt für die Anwendung.
+        /// The main entrypoint method for the program.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using (var startForm = new StartForm())
-            {
-                Application.Run(startForm);
-            }
+            using var startForm = new StartForm();
+            Application.Run(startForm);
         }
     }
 }

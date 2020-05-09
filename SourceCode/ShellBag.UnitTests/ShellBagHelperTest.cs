@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShellBag.UnitTests
 {
@@ -10,15 +9,15 @@ namespace ShellBag.UnitTests
         [TestMethod]
         public void LoadSiDsParallel()
         {
-            var test = ShellBag.Library.ShellBags.ShellBagHelper.LoadSiDsParallel();
+            var test = Library.ShellBags.ShellBagHelper.LoadSiDsParallel();
             Assert.IsNotNull(test);
         }
         [TestMethod]
         public void GetAccountFromSid()
         {
-            var sids = ShellBag.Library.ShellBags.ShellBagHelper.LoadSiDsParallel();
+            var sids = Library.ShellBags.ShellBagHelper.LoadSiDsParallel();
 
-            var test = ShellBag.Library.ShellBags.ShellBagHelper.GetAccountFromSid(sids.First().Key);
+            var test = Library.ShellBags.ShellBagHelper.GetAccountFromSid(sids.First().Key);
             Assert.IsNotNull(test);
         }
     }

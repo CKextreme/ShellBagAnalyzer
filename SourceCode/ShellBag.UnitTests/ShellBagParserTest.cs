@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ShellBag.Library;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShellBag.UnitTests
 {
@@ -8,30 +6,29 @@ namespace ShellBag.UnitTests
     public class ShellBagParserTest
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(System.ArgumentException))]
         public void EmptySIDLoadOnDemand()
         {
-            var parser = new ShellBagParser("");
-            parser.LoadOnDemand(ShellBagParser.PathEnum.NtUser);
+            var parser = new Library.ShellBagParser("");
+            parser.LoadOnDemand(Library.ShellBagParser.PathEnum.NtUser);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void EmptySIDLoadWithData()
+        [ExpectedException(typeof(System.ArgumentException))]
+        public void EmptySidLoadWithData()
         {
-            var parser = new ShellBagParser("");
-            parser.LoadWithData(ShellBagParser.PathEnum.NtUser);
+            var parser = new Library.ShellBagParser("");
+            parser.LoadWithData(Library.ShellBagParser.PathEnum.NtUser);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void NullSID()
+        [ExpectedException(typeof(System.ArgumentNullException))]
+        public void NullSid()
         {
-            string emptyStr;
-            emptyStr = null;
+            string emptyStr = null;
 
-            var parser = new ShellBagParser(emptyStr);
-            parser.LoadOnDemand(ShellBagParser.PathEnum.NtUser);
+            var parser = new Library.ShellBagParser(emptyStr);
+            parser.LoadOnDemand(Library.ShellBagParser.PathEnum.NtUser);
         }
     }
 }

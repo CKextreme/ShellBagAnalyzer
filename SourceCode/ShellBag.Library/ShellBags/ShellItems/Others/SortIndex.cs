@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShellBag.Library.ShellBags.ShellItems.Others
+﻿namespace ShellBag.Library.ShellBags.ShellItems.Others
 {
-    public enum SortIndex : byte
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum SortIndex
     {
         InternetExplorer1 = 0x00,
         InternetExplorer2 = 0x68,

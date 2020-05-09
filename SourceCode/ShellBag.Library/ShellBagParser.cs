@@ -2,9 +2,6 @@
 using Microsoft.Win32;
 using ShellBag.Library.ShellBags;
 
-// NOTES:
-// Example Bitmask: 0x23 and bitmask with 0x70 = 0x20
-
 namespace ShellBag.Library
 {
     /// <summary>

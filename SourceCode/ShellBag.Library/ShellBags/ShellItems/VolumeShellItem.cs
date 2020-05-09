@@ -5,18 +5,33 @@ namespace ShellBag.Library.ShellBags.ShellItems
 {
     public class VolumeShellItem : ShellItem
     {
+        public string DriveLetter { get; private set; } = null!;
+
         public VolumeShellItem(ushort size, byte type, byte[] data): base(size, type, data)
         {
             AnalyzeData();
         }
 
-        public override void AnalyzeData()
+        protected sealed override void AnalyzeData()
         {
-            const int skip = 3; // offset from size, class type
-            var take = Size - skip;
+            // offset from size (2 Bytes), class type (1 Byte)
+            const int skip = 3;
+            // size of the the drive letter string in bytes
+            const int take = 3;
             var name = Data.Skip(skip).Take(take);
 
-            //Console.WriteLine(System.Text.Encoding.UTF8.GetString(name.ToArray()));
+            switch (ClassType)
+            {
+                case 0x2f:
+                    DriveLetter = System.Text.Encoding.UTF8.GetString(name.ToArray());
+                    break;
+
+                #if !DEBUG
+                default:
+                    DriveLetter = BitConverter.ToString(Data);
+                    break;
+                #endif
+            }
         }
     }
 }
