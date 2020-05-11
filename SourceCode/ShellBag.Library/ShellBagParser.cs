@@ -27,10 +27,12 @@ namespace ShellBag.Library
             UsrClass
         }
 
+
         /// <summary>
         /// Klasse zum Auslesen der Ordneraktivität unter Angabe eines bestimmten Benutzers, basierend seiner SID.
         /// </summary>
         /// <param name="sid">SID des zu traversierenden Benutzers aus der Registry</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1303:Literale nicht als lokalisierte Parameter übergeben", Justification = "<Ausstehend>")]
         public ShellBagParser(string sid)
         {
             if (sid == null)
@@ -39,7 +41,7 @@ namespace ShellBag.Library
             }
             else if (string.IsNullOrEmpty(sid))
             {
-                throw new ArgumentException($"Der Parameter {nameof(sid)} darf nicht leer sein!");
+                throw new ArgumentException($"The parameter {nameof(sid)} must not be zero!");
             }
             _sid = sid;
         }

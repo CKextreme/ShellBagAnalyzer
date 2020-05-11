@@ -18,11 +18,11 @@ namespace ShellBag.Library.ShellBags.ShellItems
             const int skip = 3;
             // size of the the drive letter string in bytes
             const int take = 3;
-            var name = Data.Skip(skip).Take(take);
 
             switch (ClassType)
             {
                 case 0x2f:
+                    var name = Data.Skip(skip).Take(take);
                     DriveLetter = System.Text.Encoding.UTF8.GetString(name.ToArray());
                     break;
 

@@ -5,7 +5,7 @@
     /// </summary>
     public enum FileEntryClassType 
     {
-        Directory = 0x30,
-        ZipCompressedFile = 0x31
+        Directory = 0x31,
+        ZipCompressedFile = 0x32
     }
 }

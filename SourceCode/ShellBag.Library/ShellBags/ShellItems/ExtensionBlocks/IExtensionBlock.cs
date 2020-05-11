@@ -3,7 +3,7 @@
     public interface IExtensionBlock
     {
         ushort Size { get; }
-        byte Version { get; }
+        ushort Version { get; }
         Signature Signature { get; }
     }
 }

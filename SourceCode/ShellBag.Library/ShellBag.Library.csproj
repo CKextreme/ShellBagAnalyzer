@@ -52,10 +52,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShellBags\Logging\ConsoleLogger.cs" />
+    <Compile Include="ShellBags\Logging\FileExport.cs" />
     <Compile Include="ShellBags\Logging\LogLevels.cs" />
     <Compile Include="ShellBags\ShellBagHelper.cs" />
     <Compile Include="ShellBags\ShellBagNode.cs" />
     <Compile Include="ShellBagParser.cs" />
+    <Compile Include="ShellBags\ShellItems\ExtensionBlocks\Beef0004.cs" />
     <Compile Include="ShellBags\ShellItems\ExtensionBlocks\ExtensionBlock.cs" />
     <Compile Include="ShellBags\ShellItems\ExtensionBlocks\BeefUnknown.cs" />
     <Compile Include="ShellBags\ShellItems\ExtensionBlocks\Signature.cs" />
