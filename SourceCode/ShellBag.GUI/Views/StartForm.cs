@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using ShellBag.Library.ShellBags.Logging;
 using ShellBag.Library.ShellBags.ShellItems.Others;
 
-// TODO: Elternknoten-Selektierung hakt alle Kindknoten ab
-
 namespace ShellBag.GUI.Views
 {
     /// <summary>
@@ -35,7 +33,7 @@ namespace ShellBag.GUI.Views
         /// <summary>
         /// 
         /// </summary>
-        private Dictionary<string, ShellBagNode> _export = new Dictionary<string, ShellBagNode>();
+        private readonly Dictionary<string, ShellBagNode> _export = new Dictionary<string, ShellBagNode>();
         #endregion
 
         /// <summary>
@@ -46,18 +44,20 @@ namespace ShellBag.GUI.Views
             InitializeComponent();
 
             // Eventlisteners
-            this.Shown += StartForm_Shown;
-            this.FormClosing += StartForm_FormClosing;
-            this.beendenToolStripMenuItem.Click += BeendenToolStripMenuItem_Click;
-            this.uebertoolStripMenuItem.Click += UebertoolStripMenuItem_Click;
-            this.treeView1.AfterSelect += TreeView1_AfterSelect;
-            this.treeView1.AfterCheck += TreeView1_AfterCheck;
-            this.comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
-            this.textDateitxtToolStripMenuItem.Click += TextDateitxtToolStripMenuItem_Click;
+            Shown += StartForm_Shown;
+            FormClosing += StartForm_FormClosing;
+            beendenToolStripMenuItem.Click += BeendenToolStripMenuItem_Click;
+            uebertoolStripMenuItem.Click += UebertoolStripMenuItem_Click;
+            treeView1.AfterSelect += TreeView1_AfterSelect;
+            treeView1.AfterCheck += TreeView1_AfterCheck;
+            comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
+            textDateitxtToolStripMenuItem.Click += TextDateitxtToolStripMenuItem_Click;
         }
 
         #region StartForm Events
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void StartForm_Shown(object sender, EventArgs e)
         {
             InitComboBox();
@@ -72,7 +72,9 @@ namespace ShellBag.GUI.Views
             this.Text += " (Adminrechte!)";
             //this.Text += Resources.StartForm_Shown_AdminRights;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void StartForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!ShutdownQuestion())
@@ -80,12 +82,16 @@ namespace ShellBag.GUI.Views
                 e.Cancel = true;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void BeendenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void TextDateitxtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Save to TextFile
@@ -98,19 +104,23 @@ namespace ShellBag.GUI.Views
 
             foreach (var element in _export)
             {
-                var exporter = new FileExport();
-                exporter.ExportToTextFile(element.Value, element.Key + ".dat");
+                //var exporter = new FileExport();
+                FileExport.ExportToTextFile(element.Value, element.Key + ".dat");
             }
 
             MessageBox.Show("Exportieren fertig!");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void UebertoolStripMenuItem_Click(object sender, EventArgs e)
         {
             using var about = new AboutForm();
             about.ShowDialog();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var index = comboBox1.SelectedIndex;
@@ -125,12 +135,16 @@ namespace ShellBag.GUI.Views
             accountLabel.Visible = true;
             LoadShellBags(index);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void TreeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
-
+            //
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //e.Node.Checked = !e.Node.Checked;
@@ -141,7 +155,9 @@ namespace ShellBag.GUI.Views
         }
         #endregion
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitComboBox()
         {
             _sidDictionary = ShellBag.Library.ShellBags.ShellBagHelper.LoadSiDsParallel();
@@ -158,8 +174,11 @@ namespace ShellBag.GUI.Views
             _comboList.AddRange(_sidDictionary.Keys);
             comboBox1.DataSource = _comboBoxBindingSource;
         }
-
-        private bool ShutdownQuestion()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private static bool ShutdownQuestion()
         {
             const string message = "Beenden?"; //Resources.StartForm_Close_Message;
             const string caption = "Beenden?"; //Resources.StartForm_Close_Caption;
@@ -169,12 +188,10 @@ namespace ShellBag.GUI.Views
             var result = MessageBox.Show(message, caption, buttons, icon, defaultBtn);
             return result == DialogResult.Yes;
         }
-
-
-
-
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
         private void LoadShellBags(int index)
         {
             treeView1.Nodes.Clear();
@@ -215,7 +232,12 @@ namespace ShellBag.GUI.Views
 
             dataGridViewHintLabel.Text = "Bitte wählen Sie ein Kindelement aus der linken Seite.";
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="nodes"></param>
+        /// <param name="rootName"></param>
         private void GenerateRecursiveTreeView(ref TreeNode root, ref ShellBagNode nodes, ref string rootName)
         {
             // if null then
@@ -223,8 +245,7 @@ namespace ShellBag.GUI.Views
 
             foreach (var node in nodes)
             {
-                var child = new TreeNode();
-                child.Tag = node.Value;
+                var child = new TreeNode {Tag = node.Value};
 
                 // demo output for the nodes
                 var name = $"[{string.Format(CultureInfo.CurrentCulture, "{0:D3}", node.Key)}] - ";
@@ -234,13 +255,14 @@ namespace ShellBag.GUI.Views
                     VolumeShellItem v => $"{(string.IsNullOrEmpty(v.DriveLetter) ? "VolumeShellItem (unknown)" : $"Laufwerk: {v.DriveLetter}")}",
                     RootFolderShellItem r => Enum.IsDefined(typeof(SortIndex), r.SortIndex) ? $"{r.SortIndex}" : $"SortIndex (unknown): {string.Format(CultureInfo.CurrentCulture, "0x{0:X2}", (int)r.SortIndex)}",
                     FileEntryShellItem f => $"{f.PrimaryName}",
-                    UnknownShellItem u => $"ShellItem (unknown): {string.Format(CultureInfo.CurrentCulture, "0x{0:X2}", u.ClassType)}"
+                    UnknownShellItem u => $"ShellItem (unknown): {string.Format(CultureInfo.CurrentCulture, "0x{0:X2}", u.ClassType)}",
+                    _ => throw new ArgumentOutOfRangeException(nameof(nodes), "node.Value.ShellItem has undefinded shell item")
                 };
 
                 if (node.Value != null)
                 {
                     var count = node.Value.Count;
-                    name += $" (Count: {count})";
+                    name += $" (Knoten: {count})";
                 }
 
                 child.Text = name;
@@ -296,7 +318,7 @@ namespace ShellBag.GUI.Views
             dataGridView1.Rows.Add("Size:", root.Size + " Bytes");
             dataGridView1.Rows.Add("GUID:", root.GlobalId.ToString());
             dataGridView1.Rows.Add("SortIndex:", root.SortIndex + $" ({string.Format(CultureInfo.CurrentCulture, "0x{0:X2}", (int)root.SortIndex)})");
-            dataGridView1.Rows.Add("RawData:", BitConverter.ToString(root.Data));
+            dataGridView1.Rows.Add("RawData:", BitConverter.ToString(root.Data.ToArray()));
         }
 
         private void RenderVolumeItem(ref VolumeShellItem volume)
@@ -309,7 +331,7 @@ namespace ShellBag.GUI.Views
             {
                 dataGridView1.Rows.Add("DriveLetter:", volume.DriveLetter);
             }
-            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(volume.Data));
+            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(volume.Data.ToArray()));
         }
 
         private void RenderNetworkItem(ref NetworkLocationShellItem network)
@@ -319,13 +341,13 @@ namespace ShellBag.GUI.Views
             dataGridView1.Rows.Add("Size:", network.Size + " Bytes");
             dataGridView1.Rows.Add("UncPath:", network.Names.UncPath + $" ({network.Names.MicrosoftNetwork})");
             dataGridView1.Rows.Add("Description:",network.Names.Description);
-            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(network.Data));
+            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(network.Data.ToArray()));
         }
 
         private void RenderFileEntryItem(ref FileEntryShellItem file)
         {
             dataGridView1.Columns.Add(nameof(FileEntryShellItem), $"ShellItem: {nameof(FileEntryShellItem)}");
-            dataGridView1.Rows.Add("ClassType:", string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", (int)file.ClassType) + $" ({file.ClassType.ToString()})");
+            dataGridView1.Rows.Add("ClassType:", string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", (int)file.ClassType) + $" ({file.ClassType})");
             dataGridView1.Rows.Add("Size:", file.Size + " Bytes");
             dataGridView1.Rows.Add("PrimaryName:", file.PrimaryName);
 
@@ -349,7 +371,7 @@ namespace ShellBag.GUI.Views
                 dataGridView1.Rows.Add("BeefType:", "null");
             }
 
-            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(file.Data));
+            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(file.Data.ToArray()));
         }
 
         private void RenderUnknownItem(ref UnknownShellItem unknown)
@@ -357,7 +379,7 @@ namespace ShellBag.GUI.Views
             dataGridView1.Columns.Add(nameof(FileEntryShellItem), $"ShellItem: {nameof(FileEntryShellItem)}");
             dataGridView1.Rows.Add("ClassType:", string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", unknown.ClassType));
             dataGridView1.Rows.Add("Size:", unknown.Size + " Bytes");
-            dataGridView1.Rows.Add("RawData",BitConverter.ToString(unknown.Data));
+            dataGridView1.Rows.Add("RawData",BitConverter.ToString(unknown.Data.ToArray()));
         }
     }
 }

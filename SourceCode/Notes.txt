@@ -1,6 +1,8 @@
 # Notes:
 - NTFS is little-endian (Source?)
 - System.BitConverter is checking if Byte-Array is Little-Endian and reverse the order
+- HiveList: HKLM\SYSTEM\CurrentControlSet\Control\hivelist
+- Predefined registry keys: https://docs.microsoft.com/en-us/windows/win32/sysinfo/predefined-keys
 
 // Source: https://en.wikipedia.org/wiki/Control_character#Transmission_control
 // "The start of text character (STX) marked the end of the header, and the start of the textual part of a stream"
@@ -12,6 +14,8 @@
 - Bitmask: 0x23 and bitmask with 0x70 = 0x20
 
 # SourceCode:
+- own SID: whoami /user
+- username: wmic useraccount where sid='<SID>' get name
 
 //ShellItem test = new RootFolderShellItem(classType,classType);
             //if (test is RootFolderShellItem)

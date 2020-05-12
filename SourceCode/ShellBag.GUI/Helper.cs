@@ -10,7 +10,7 @@ namespace ShellBag.GUI
         /// <summary>
         /// Checks if the program ist is started with admin permissions.
         /// <para>
-        /// Sources: <seealso href="https://stackoverflow.com/a/5953294"/>
+        /// Source: <seealso href="https://stackoverflow.com/a/5953294"/>
         /// </para>
         /// </summary>
         /// <returns>True if program started as admin. Otherwise false.</returns>

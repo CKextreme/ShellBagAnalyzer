@@ -1,7 +1,10 @@
 ﻿namespace ShellBag.Library.ShellBags.ShellItems.Others
 {
     /// <summary>
-    /// 
+    /// Enumeration that contains specific convention names for the specific SortIndex hex.
+    /// <para>
+    /// Used by: <seealso cref="RootFolderShellItem"/>
+    /// </para>
     /// </summary>
     public enum SortIndex
     {

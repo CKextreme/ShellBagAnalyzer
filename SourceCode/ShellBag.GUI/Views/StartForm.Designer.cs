@@ -157,8 +157,8 @@
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer.Panel2.Controls.Add(this.dataGridViewHintLabel);
+            this.splitContainer.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer.Size = new System.Drawing.Size(724, 385);
             this.splitContainer.SplitterDistance = 300;
             this.splitContainer.SplitterIncrement = 5;

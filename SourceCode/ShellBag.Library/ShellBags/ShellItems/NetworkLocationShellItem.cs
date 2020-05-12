@@ -4,18 +4,25 @@ using System.Linq;
 
 namespace ShellBag.Library.ShellBags.ShellItems
 {
+    /// <summary>
+    /// Specific shell item contains network informations.
+    /// </summary>
     public class NetworkLocationShellItem : ShellItem
     {
         /// <summary>
         /// Field that holds a <see cref="UncNames"/>-class.
         /// </summary>
         public UncNames Names { get; private set; } = null!;
-
-        public NetworkLocationShellItem(ushort size, byte type, byte[] data) : base(size, type, data)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public NetworkLocationShellItem(ushort size, byte type, IEnumerable<byte> data) : base(size, type, data)
         {
             AnalyzeData();
         }
-
+        /// <summary>
+        /// Sealed AnalyzeData method
+        /// </summary>
         protected sealed override void AnalyzeData()
         {
             // offset from size, class type, 2x unknown bytes
@@ -44,7 +51,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
             // extract the strings from the list and pass to the class
             var path = list.First();
             var network = list.ElementAt(1);
-            var extra = list.Count > 2 ? list.ElementAt(2) : null;
+            var extra = list.Count > 2 ? list.ElementAt(2) : string.Empty;
 
             Names = new UncNames(path, network, extra);
         }

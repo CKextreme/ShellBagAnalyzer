@@ -2,6 +2,9 @@
 
 namespace ShellBag.Library.ShellBags.Logging
 {
+    /// <summary>
+    /// Enumeration for well-known Log levels.
+    /// </summary>
     [Flags]
     public enum LogLevels
     {

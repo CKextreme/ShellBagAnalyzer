@@ -3,21 +3,41 @@ using ShellBag.Library.ShellBags.ShellItems.Others;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ShellBag.Library.ShellBags.Logging;
 
 namespace ShellBag.Library.ShellBags.ShellItems
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class FileEntryShellItem : ShellItem
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public new FileEntryClassType ClassType { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime? ModificationDateTime { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string PrimaryName { get; private set; } = null!;
+        /// <summary>
+        /// 
+        /// </summary>
         public ExtensionBlock BeefType { get; private set; } = null!;
-
-        public FileEntryShellItem(ushort size, byte type, byte[] data) : base(size, type, data)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public FileEntryShellItem(ushort size, byte type, IEnumerable<byte> data) : base(size, type, data)
         {
             AnalyzeData();
         }
-
+        /// <summary>
+        /// Sealed AnalyzeData method.
+        /// </summary>
         protected sealed override void AnalyzeData()
         {
             ParseClassType();
@@ -27,7 +47,9 @@ namespace ShellBag.Library.ShellBags.ShellItems
             var variableOffset = ParsePrimaryName();
             ParseExtensionBlock(variableOffset);
         }
-
+        /// <summary>
+        /// Cast the class type to the specific <see cref="FileEntryClassType"/>.
+        /// </summary>
         private void ParseClassType()
         {
             // Skip Size (2 Bytes)
@@ -55,6 +77,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
 
             if (datetimeBytes[0] == 0x00 && datetimeBytes[1] == 0x00 && datetimeBytes[2] == 0x00 && datetimeBytes[3] == 0x00)
             {
+                ConsoleLogger.Log(LogLevels.Info, "DateTime bytes are empty!");
                 ModificationDateTime = null;
                 return;
             }
@@ -93,13 +116,19 @@ namespace ShellBag.Library.ShellBags.ShellItems
             {
                 ModificationDateTime = new DateTime(year, month, day, hour, minutes, seconds, DateTimeKind.Utc);
             }
+#pragma warning disable CA1031 // Keine allgemeinen Ausnahmetypen abfangen
             catch (Exception e)
+#pragma warning restore CA1031 // Keine allgemeinen Ausnahmetypen abfangen
             {
+                ConsoleLogger.Log(e);
                 ModificationDateTime = null;
             }
             
         }
-
+        /// <summary>
+        /// Parse the primary name from the <see cref="FileEntryShellItem"/>.
+        /// </summary>
+        /// <returns></returns>
         private int ParsePrimaryName()
         {
             // skip 2 bytes after modification datetime for unknown bytes
@@ -120,7 +149,9 @@ namespace ShellBag.Library.ShellBags.ShellItems
             PrimaryName = System.Text.Encoding.UTF8.GetString(name.ToArray());
             return name.Count;
         }
-
+        /// <summary>
+        /// Parse the remaining data and analyze the specific beef type.
+        /// </summary>
         private void ParseExtensionBlock(int nextskip)
         {
             // let beeftype be null if primaryname empty.

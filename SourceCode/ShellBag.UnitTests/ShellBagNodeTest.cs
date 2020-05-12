@@ -8,7 +8,7 @@ namespace ShellBag.UnitTests
         [TestMethod]
         public void CreateInstance()
         {
-            var node1 = new Library.ShellBags.ShellBagNode();
+            var node1 = new Library.ShellBags.ShellBagNode(null!);
             Assert.IsNull(node1.RawBinaryData);
         }
     }

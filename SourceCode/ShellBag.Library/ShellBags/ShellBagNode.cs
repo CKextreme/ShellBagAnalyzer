@@ -8,6 +8,7 @@ namespace ShellBag.Library.ShellBags
     /// <summary>
     /// Abgeleitete Klasse von <see cref="Dictionary{TKey,TValue}"/>, welche die Knoten und deren Kindknoten speichert.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2237:ISerializable-Typen mit \"serializable\" markieren", Justification = "Don't want to add serialization.")]
     public class ShellBagNode : Dictionary<int, ShellBagNode>
     {
         //private static int counter = 0;
@@ -16,7 +17,8 @@ namespace ShellBag.Library.ShellBags
         /// Ein nur lesbares Byte-Array, welches die Daten für den Kindknoten vom Elternknoten speichert.
         /// <para>Basierend der Daten aus der Registry vom Typ REG_BINARY.</para>
         /// </summary>
-        public byte[] RawBinaryData { get; }
+        public IEnumerable<byte> RawBinaryData { get; }
+
         /// <summary>
         /// Abstrakte Klasse um einen der abgeleiteten Sonderfälle widerzuspiegeln.
         /// <para>
@@ -24,15 +26,7 @@ namespace ShellBag.Library.ShellBags
         /// <seealso cref="RootFolderShellItem"/>, <seealso cref="VolumeShellItem"/>, <seealso cref="FileEntryShellItem"/>, <seealso cref="NetworkLocationShellItem"/>
         /// </para>
         /// </summary>
-        public ShellItem ShellItem { get; }
-
-        /// <summary>
-        /// Parameterloser Konstruktor für die Klasse <see cref="ShellBagNode"/>.
-        /// <para>
-        /// <see cref="RawBinaryData"/> wird auf <see langword="null"/> gesetzt.
-        /// </para>
-        /// </summary>
-        public ShellBagNode() => RawBinaryData = null;
+        public ShellItem ShellItem { get; } = null!;
 
         /// <summary>
         /// Der Konstruktor für die Klasse <see cref="ShellBagNode"/>.
@@ -47,6 +41,11 @@ namespace ShellBag.Library.ShellBags
             }
         }
 
+        /// <summary>
+        /// Indexer
+        /// </summary>
+        public new KeyValuePair<int, ShellBagNode> this[int i] => this.ElementAt(i);
+
         private ShellItem AnalyzeShellItemType()
         {
             // All class types as output found from earlier read from my computer:
@@ -59,7 +58,15 @@ namespace ShellBag.Library.ShellBags
             switch (classType)
             {
                 case 0x1F:
-                    shellitem = new RootFolderShellItem(itemSize, classType, data);
+                    // filter other type when the size isn't 0x14. Seems to be something new.
+                    if (itemSize == 0x0014)
+                    {
+                        shellitem = new RootFolderShellItem(itemSize, classType, data);
+                    }
+                    else
+                    {
+                        shellitem = new UnknownShellItem(itemSize, classType, data);
+                    }
                     break;
                 case 0x31:
                 case 0x32:

@@ -9,8 +9,17 @@ namespace ShellBag.Library
     /// </summary>
     public class ShellBagParser
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private readonly string _sid;
+        /// <summary>
+        /// Constant Ntuser path
+        /// </summary>
         private const string NtUserPath = @"\Software\Microsoft\Windows\Shell\BagMRU";
+        /// <summary>
+        /// Constant UsrClass path
+        /// </summary>
         private const string UsrClassPath = @"\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\BagMRU";
 
         /// <summary>
