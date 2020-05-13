@@ -376,7 +376,7 @@ namespace ShellBag.GUI.Views
 
         private void RenderUnknownItem(ref UnknownShellItem unknown)
         {
-            dataGridView1.Columns.Add(nameof(FileEntryShellItem), $"ShellItem: {nameof(FileEntryShellItem)}");
+            dataGridView1.Columns.Add(nameof(UnknownShellItem), $"ShellItem: {nameof(UnknownShellItem)}");
             dataGridView1.Rows.Add("ClassType:", string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", unknown.ClassType));
             dataGridView1.Rows.Add("Size:", unknown.Size + " Bytes");
             dataGridView1.Rows.Add("RawData",BitConverter.ToString(unknown.Data.ToArray()));

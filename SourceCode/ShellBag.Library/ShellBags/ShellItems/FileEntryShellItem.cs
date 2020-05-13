@@ -77,7 +77,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
 
             if (datetimeBytes[0] == 0x00 && datetimeBytes[1] == 0x00 && datetimeBytes[2] == 0x00 && datetimeBytes[3] == 0x00)
             {
-                ConsoleLogger.Log(LogLevels.Info, "DateTime bytes are empty!");
+                ConsoleLogger.Log(LogLevels.Debug, "DateTime bytes are empty!");
                 ModificationDateTime = null;
                 return;
             }

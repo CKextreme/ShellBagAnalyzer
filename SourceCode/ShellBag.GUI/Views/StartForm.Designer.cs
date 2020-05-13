@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLoadTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,10 +40,14 @@
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.TreeViewHintLabel = new System.Windows.Forms.Label();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewHintLabel = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.accountLabel = new System.Windows.Forms.Label();
+            this.statusStrip2 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLoadTimeLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -54,45 +55,19 @@
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.statusStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
             this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel,
-            this.toolStripStatusCountLabel,
-            this.toolStripStatusLoadTimeLabel});
+            this.toolStripStatusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(5, 439);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(724, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(45, 17);
-            this.toolStripStatusLabel.Text = "Bereit!";
-            // 
-            // toolStripStatusCountLabel
-            // 
-            this.toolStripStatusCountLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusCountLabel.Name = "toolStripStatusCountLabel";
-            this.toolStripStatusCountLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripStatusCountLabel.Size = new System.Drawing.Size(605, 17);
-            this.toolStripStatusCountLabel.Spring = true;
-            this.toolStripStatusCountLabel.Text = "Count:";
-            this.toolStripStatusCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolStripStatusCountLabel.Visible = false;
-            // 
-            // toolStripStatusLoadTimeLabel
-            // 
-            this.toolStripStatusLoadTimeLabel.Name = "toolStripStatusLoadTimeLabel";
-            this.toolStripStatusLoadTimeLabel.Size = new System.Drawing.Size(59, 17);
-            this.toolStripStatusLoadTimeLabel.Text = "Ladezeit:";
-            this.toolStripStatusLoadTimeLabel.Visible = false;
             // 
             // menuStrip1
             // 
@@ -159,7 +134,7 @@
             // 
             this.splitContainer.Panel2.Controls.Add(this.dataGridViewHintLabel);
             this.splitContainer.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer.Size = new System.Drawing.Size(724, 385);
+            this.splitContainer.Size = new System.Drawing.Size(724, 360);
             this.splitContainer.SplitterDistance = 300;
             this.splitContainer.SplitterIncrement = 5;
             this.splitContainer.SplitterWidth = 2;
@@ -171,7 +146,7 @@
             this.TreeViewHintLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreeViewHintLabel.Location = new System.Drawing.Point(0, 0);
             this.TreeViewHintLabel.Name = "TreeViewHintLabel";
-            this.TreeViewHintLabel.Size = new System.Drawing.Size(300, 385);
+            this.TreeViewHintLabel.Size = new System.Drawing.Size(300, 360);
             this.TreeViewHintLabel.TabIndex = 1;
             this.TreeViewHintLabel.Text = "keine Registry geladen...";
             this.TreeViewHintLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -185,8 +160,19 @@
             this.treeView1.ItemHeight = 20;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(300, 385);
+            this.treeView1.Size = new System.Drawing.Size(300, 360);
             this.treeView1.TabIndex = 0;
+            // 
+            // dataGridViewHintLabel
+            // 
+            this.dataGridViewHintLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dataGridViewHintLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewHintLabel.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewHintLabel.Name = "dataGridViewHintLabel";
+            this.dataGridViewHintLabel.Size = new System.Drawing.Size(422, 360);
+            this.dataGridViewHintLabel.TabIndex = 2;
+            this.dataGridViewHintLabel.Text = "keine Registry geladen...";
+            this.dataGridViewHintLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridView1
             // 
@@ -195,23 +181,23 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -222,19 +208,8 @@
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(422, 385);
+            this.dataGridView1.Size = new System.Drawing.Size(422, 360);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // dataGridViewHintLabel
-            // 
-            this.dataGridViewHintLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dataGridViewHintLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewHintLabel.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewHintLabel.Name = "dataGridViewHintLabel";
-            this.dataGridViewHintLabel.Size = new System.Drawing.Size(422, 385);
-            this.dataGridViewHintLabel.TabIndex = 2;
-            this.dataGridViewHintLabel.Text = "keine Registry geladen...";
-            this.dataGridViewHintLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // comboBox1
             // 
@@ -258,11 +233,51 @@
             this.accountLabel.Text = "accountLabel";
             this.accountLabel.Visible = false;
             // 
+            // statusStrip2
+            // 
+            this.statusStrip2.BackColor = System.Drawing.SystemColors.Control;
+            this.statusStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusCountLabel,
+            this.toolStripStatusLoadTimeLabel});
+            this.statusStrip2.Location = new System.Drawing.Point(5, 417);
+            this.statusStrip2.Name = "statusStrip2";
+            this.statusStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.statusStrip2.Size = new System.Drawing.Size(724, 22);
+            this.statusStrip2.SizingGrip = false;
+            this.statusStrip2.TabIndex = 6;
+            this.statusStrip2.Text = "statusStrip2";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(678, 17);
+            this.toolStripStatusLabel.Spring = true;
+            this.toolStripStatusLabel.Text = "Bereit!";
+            this.toolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripStatusLoadTimeLabel
+            // 
+            this.toolStripStatusLoadTimeLabel.Name = "toolStripStatusLoadTimeLabel";
+            this.toolStripStatusLoadTimeLabel.Size = new System.Drawing.Size(61, 17);
+            this.toolStripStatusLoadTimeLabel.Text = "Ladezeit: -";
+            // 
+            // toolStripStatusCountLabel
+            // 
+            this.toolStripStatusCountLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusCountLabel.Name = "toolStripStatusCountLabel";
+            this.toolStripStatusCountLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripStatusCountLabel.Size = new System.Drawing.Size(617, 17);
+            this.toolStripStatusCountLabel.Spring = true;
+            this.toolStripStatusCountLabel.Text = "Knotenanzahl: -";
+            this.toolStripStatusCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 461);
+            this.Controls.Add(this.statusStrip2);
             this.Controls.Add(this.accountLabel);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.splitContainer);
@@ -283,6 +298,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.statusStrip2.ResumeLayout(false);
+            this.statusStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,13 +316,14 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label TreeViewHintLabel;
         private System.Windows.Forms.Label dataGridViewHintLabel;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.Label accountLabel;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusCountLabel;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLoadTimeLabel;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolStripMenuItem exportierenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textDateitxtToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusCountLabel;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLoadTimeLabel;
     }
 }
 
