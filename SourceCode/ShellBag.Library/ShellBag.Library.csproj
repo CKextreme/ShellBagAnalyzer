@@ -72,6 +72,7 @@
     <Compile Include="ShellBags\ShellItems\ShellItem.cs" />
     <Compile Include="ShellBags\ShellItems\UnknownShellItem.cs" />
     <Compile Include="ShellBags\ShellItems\VolumeShellItem.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

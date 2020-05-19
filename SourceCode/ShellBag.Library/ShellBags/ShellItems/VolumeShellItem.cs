@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ShellBag.Library.ShellBags.Logging;
 
 namespace ShellBag.Library.ShellBags.ShellItems
@@ -17,7 +18,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
         /// <summary>
         /// Constructor
         /// </summary>
-        public VolumeShellItem(ushort size, byte type, IEnumerable<byte> data): base(size, type, data)
+        public VolumeShellItem(IEnumerable<byte> rawData) : base(rawData)
         {
             AnalyzeData();
         }
@@ -34,13 +35,24 @@ namespace ShellBag.Library.ShellBags.ShellItems
             switch (ClassType)
             {
                 case 0x2f:
-                    var name = Data.Skip(skip).Take(take);
+                    var name = RawData.Skip(skip).Take(take);
                     DriveLetter = System.Text.Encoding.UTF8.GetString(name.ToArray());
                     break;
                 default:
-                    Logging.ConsoleLogger.Log(LogLevels.Debug, $"DriveLetter: {BitConverter.ToString(Data.ToArray())}");
+                    ConsoleLogger.Log(LogLevels.Debug, $"DriveLetter: {BitConverter.ToString(RawData.ToArray())}");
                     break;
             }
+        }
+
+        /// <summary>
+        /// Custom ToString method.
+        /// </summary>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append($" , DriveLetter: {DriveLetter}");
+            return sb.ToString();
         }
     }
 }

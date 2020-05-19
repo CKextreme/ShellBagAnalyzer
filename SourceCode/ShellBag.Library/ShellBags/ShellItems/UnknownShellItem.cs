@@ -13,7 +13,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
         /// <summary>
         /// Constructor
         /// </summary>
-        public UnknownShellItem(ushort size, byte type, IEnumerable<byte> data) : base(size, type, data)
+        public UnknownShellItem(IEnumerable<byte> rawData) : base(rawData)
         {
             ConsoleLogger.Log(LogLevels.Debug, $"{nameof(UnknownShellItem)} found - ClassType: {string.Format(CultureInfo.CurrentCulture, "0x{0:X2}", ClassType)}");
         }

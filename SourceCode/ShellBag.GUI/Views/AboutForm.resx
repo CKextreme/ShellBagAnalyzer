@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Voraussetzung für ShellBag.GUI.exe: 
+1. Installation .NET Framework 4.8
+2. Ermitteln der SID des aktuellen Benutzers in der Eingabeaufforderung: whoami /user
+
+Zum Tool:
+- Zunächst muss die SID ausgewählt werden.
+- Im linken Fenster erscheinen die ShellBags der NTUSER.dat und USRCLASS.dat als Baumstruktur.
+Dieser Baum kann aufgeklappt werden.
+- Durch Auswahl eines Shell Items im linken Fenster erscheinen im rechten Fenster die dazugehörigen Informationen in tabellarischer Form.
+
+Zur Exportfunktion:
+- Die Auswahl erfolgt über die Menüleiste „Datei – Exportieren – Textdatei (.txt)“.
+- Im Verzeichnis, in dem die ausführbare Datei liegt, werden 2 Textdateien für die ShellBags der NTUSER.dat und USRCLASS.dat abgelegt, welche mit einem Editor eingesehen werden können.</value>
+  </data>
 </root>

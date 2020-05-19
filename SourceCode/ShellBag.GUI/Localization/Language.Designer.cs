@@ -59,5 +59,131 @@ namespace ShellBag.GUI.Localization {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Benutzername konnte nicht ermittelt werden! ähnelt.
+        /// </summary>
+        internal static string ShellBagsHelper_LoadSidsParallel_NoUsername {
+            get {
+                return ResourceManager.GetString("ShellBagsHelper_LoadSidsParallel_NoUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pfad: ähnelt.
+        /// </summary>
+        internal static string StartForm_ChangeToolStripLabelPath_Text {
+            get {
+                return ResourceManager.GetString("StartForm_ChangeToolStripLabelPath_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Programm beenden ähnelt.
+        /// </summary>
+        internal static string StartForm_Close_Caption {
+            get {
+                return ResourceManager.GetString("StartForm_Close_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Möchten Sie das Programm wirklich beenden? ähnelt.
+        /// </summary>
+        internal static string StartForm_Close_Message {
+            get {
+                return ResourceManager.GetString("StartForm_Close_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Benutzername: ähnelt.
+        /// </summary>
+        internal static string StartForm_ComboBoxChanged_Name {
+            get {
+                return ResourceManager.GetString("StartForm_ComboBoxChanged_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wähle eine verfügbare User-SID aus der Live-Registry: ähnelt.
+        /// </summary>
+        internal static string StartForm_ctr_combotxtDefault {
+            get {
+                return ResourceManager.GetString("StartForm_ctr_combotxtDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler: Konnte keine SIDs (User) ermitteln! ähnelt.
+        /// </summary>
+        internal static string StartForm_InitComboBox_Zero {
+            get {
+                return ResourceManager.GetString("StartForm_InitComboBox_Zero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte wählen Sie ein Kindelement aus der linken Seite. ähnelt.
+        /// </summary>
+        internal static string StartForm_LoadShellBags_datagridViewHintLabel {
+            get {
+                return ResourceManager.GetString("StartForm_LoadShellBags_datagridViewHintLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lade ShellBags... ähnelt.
+        /// </summary>
+        internal static string StartForm_LoadShellBags_Status {
+            get {
+                return ResourceManager.GetString("StartForm_LoadShellBags_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bereit! ähnelt.
+        /// </summary>
+        internal static string StartForm_Ready {
+            get {
+                return ResourceManager.GetString("StartForm_Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die (mit Administratorrechten) ähnelt.
+        /// </summary>
+        internal static string StartForm_Shown_AdminRights {
+            get {
+                return ResourceManager.GetString("StartForm_Shown_AdminRights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die (keine Administratorrechte!) ähnelt.
+        /// </summary>
+        internal static string StartForm_Shown_NoAdminRights {
+            get {
+                return ResourceManager.GetString("StartForm_Shown_NoAdminRights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte vorher nach ShellBag-Einträgen suchen! ähnelt.
+        /// </summary>
+        internal static string StartForm_TextDateitxtToolStripMenuItem_SearchPlease {
+            get {
+                return ResourceManager.GetString("StartForm_TextDateitxtToolStripMenuItem_SearchPlease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exportieren fertig! ähnelt.
+        /// </summary>
+        internal static string StartForm_TextDateitxtToolStripMenuItem_Success {
+            get {
+                return ResourceManager.GetString("StartForm_TextDateitxtToolStripMenuItem_Success", resourceCulture);
+            }
+        }
     }
 }

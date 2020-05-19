@@ -1,8 +1,16 @@
+# Notes for .Net 5:
+- use Span<T> instead of passing a byte-array
+- Parallelization
+
 # Notes:
+- Helper-class = project specific
+- Utils-class = project independent
+
 - NTFS is little-endian (Source?)
 - System.BitConverter is checking if Byte-Array is Little-Endian and reverse the order
 - HiveList: HKLM\SYSTEM\CurrentControlSet\Control\hivelist
 - Predefined registry keys: https://docs.microsoft.com/en-us/windows/win32/sysinfo/predefined-keys
+- HKLM & HKU are MasterKeys
 
 // Source: https://en.wikipedia.org/wiki/Control_character#Transmission_control
 // "The start of text character (STX) marked the end of the header, and the start of the textual part of a stream"

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 
 namespace ShellBag.Library.ShellBags.ShellItems
 {
@@ -9,19 +13,29 @@ namespace ShellBag.Library.ShellBags.ShellItems
     {
         public ushort Size { get; }
         public byte ClassType { get; }
-        public IEnumerable<byte> Data { get; }
+        public IEnumerable<byte> RawData { get; }
         /// <summary>
         /// Constructor
         /// </summary>
-        protected ShellItem(ushort size, byte type, IEnumerable<byte> data)
+        protected ShellItem(IEnumerable<byte> rawData)
         {
-            Size = size;
-            ClassType = type;
-            Data = data;
+            RawData = rawData;
+            Size = BitConverter.ToUInt16(RawData.Take(2).ToArray(), 0);
+            ClassType = RawData.Skip(2).Take(1).First();
         }
         /// <summary>
         /// Method which is analyzing the passed raw data
         /// </summary>
         protected abstract void AnalyzeData();
+
+        /// <summary>
+        /// Custom ToString method.
+        /// </summary>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Size: {0} , ClassType: {1} , RawData: {BitConverter.ToString(RawData.ToArray())}");
+            return sb.ToString();
+        }
     }
 }

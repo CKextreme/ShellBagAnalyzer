@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using ShellBag.Library.ShellBags.Logging;
 
 namespace ShellBag.Library.ShellBags.ShellItems.ExtensionBlocks
@@ -14,9 +15,9 @@ namespace ShellBag.Library.ShellBags.ShellItems.ExtensionBlocks
         /// <summary>
         /// Constructor
         /// </summary>
-        public BeefUnknown(ushort size, ushort version, Signature signature) : base(size, version, signature)
+        public BeefUnknown(IEnumerable<byte> rawBeefData) : base(rawBeefData)
         {
-            ConsoleLogger.Log(LogLevels.Debug, $"{nameof(BeefUnknown)} found - ClassType: {string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", signature)}");
+            ConsoleLogger.Log(LogLevels.Debug, $"{nameof(BeefUnknown)} found - ClassType: {string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", Signature)}");
         }
 
         protected override void AnalyzeData()

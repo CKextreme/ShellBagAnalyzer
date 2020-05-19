@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ShellBag.Library.ShellBags.ShellItems.Others;
 
 namespace ShellBag.Library.ShellBags.ShellItems
@@ -21,7 +22,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
         /// <summary>
         /// Constructor
         /// </summary>
-        public RootFolderShellItem(ushort size, byte type, IEnumerable<byte> data) : base(size, type, data)
+        public RootFolderShellItem(IEnumerable<byte> rawData) : base(rawData)
         {
             AnalyzeData();
         }
@@ -39,7 +40,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
         private void ParseSortIndex()
         {
             // Skip Size + ClassType
-            var type = Data.Skip(3).First();
+            var type = RawData.Skip(3).First();
             SortIndex = (SortIndex)type;
         }
         /// <summary>
@@ -50,10 +51,32 @@ namespace ShellBag.Library.ShellBags.ShellItems
         private void ParseGuid()
         {
             // Skip Size + ClassType + SortIndex / Take 16 Bytes for GUID
-            var data = Data.Skip(4).Take(16);
+            var data = RawData.Skip(4).Take(16);
             // platform independent (little or big endian)?
-            // 
-            GlobalId = new Guid(data.ToArray());
+
+            try
+            {
+                GlobalId = new Guid(data.ToArray());
+            }
+#pragma warning disable CA1031
+            catch
+#pragma warning restore CA1031
+            {
+
+                // Guid = null;
+            }
+            
+        }
+
+        /// <summary>
+        /// Custom ToString method.
+        /// </summary>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append($" , SortIndex: {SortIndex} , GUID: {GlobalId}");
+            return sb.ToString();
         }
     }
 }

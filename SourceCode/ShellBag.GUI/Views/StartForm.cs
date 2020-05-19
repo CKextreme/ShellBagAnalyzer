@@ -7,7 +7,9 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using ShellBag.GUI.Localization;
 using ShellBag.Library.ShellBags.Logging;
+using ShellBag.Library.ShellBags.ShellItems.ExtensionBlocks;
 using ShellBag.Library.ShellBags.ShellItems.Others;
 
 namespace ShellBag.GUI.Views
@@ -65,12 +67,10 @@ namespace ShellBag.GUI.Views
             var admin = Helper.CheckAdminRights();
             if (!admin)
             {
-                this.Text += " (Keine Adminrechte!)";
-                //this.Text += Resources.StartForm_Shown_NoAdminRights;
+                this.Text += $@" {Localization.Language.StartForm_Shown_NoAdminRights}";
                 return;
             }
-            this.Text += " (Adminrechte!)";
-            //this.Text += Resources.StartForm_Shown_AdminRights;
+            this.Text += $@" {Localization.Language.StartForm_Shown_AdminRights}";
         }
         /// <summary>
         /// 
@@ -98,7 +98,7 @@ namespace ShellBag.GUI.Views
 
             if (_export.Count == 0)
             {
-                MessageBox.Show("Bitte vorher nach ShellBag-Einträgen suchen!");
+                MessageBox.Show($@"{Localization.Language.StartForm_TextDateitxtToolStripMenuItem_SearchPlease}");
                 return;
             }
 
@@ -108,7 +108,7 @@ namespace ShellBag.GUI.Views
                 FileExport.ExportToTextFile(element.Value, element.Key + ".dat");
             }
 
-            MessageBox.Show("Exportieren fertig!");
+            MessageBox.Show($@"{Localization.Language.StartForm_TextDateitxtToolStripMenuItem_Success}");
         }
         /// <summary>
         /// 
@@ -131,7 +131,7 @@ namespace ShellBag.GUI.Views
             }
 
             var username = _sidDictionary[_comboList[index]];
-            accountLabel.Text = username; //Resources.StartForm_ComboBoxChanged_Name + text;
+            accountLabel.Text = $@"{Localization.Language.StartForm_ComboBoxChanged_Name} {username}";
             accountLabel.Visible = true;
             LoadShellBags(index);
         }
@@ -148,7 +148,7 @@ namespace ShellBag.GUI.Views
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //e.Node.Checked = !e.Node.Checked;
-            toolStripStatusLabel.Text = "Pfad: " + e.Node.FullPath; //Resources.StartForm_ChangeToolStripLabelPath_Text + path;
+            toolStripStatusLabel.Text = $@"{Localization.Language.StartForm_ChangeToolStripLabelPath_Text} {e.Node.FullPath}";
 
             var temp = (ShellBagNode)e.Node.Tag;
             RenderDataGridView(temp);
@@ -165,11 +165,11 @@ namespace ShellBag.GUI.Views
             if (_sidDictionary.Count == 0)
             {
 
-                toolStripStatusLabel.Text = "Leere Combobox"; //Resources.StartForm_InitComboBox_Zero;
+                toolStripStatusLabel.Text = $@"{Localization.Language.StartForm_InitComboBox_Zero}";
                 return;
             }
 
-            _comboList.Add("leere combobox"); // Resources...
+            _comboList.Add($@"{Localization.Language.StartForm_ctr_combotxtDefault}");
             _comboBoxBindingSource.DataSource = _comboList;
             _comboList.AddRange(_sidDictionary.Keys);
             comboBox1.DataSource = _comboBoxBindingSource;
@@ -180,8 +180,8 @@ namespace ShellBag.GUI.Views
         /// <returns></returns>
         private static bool ShutdownQuestion()
         {
-            const string message = "Beenden?"; //Resources.StartForm_Close_Message;
-            const string caption = "Beenden?"; //Resources.StartForm_Close_Caption;
+            string message = $"{Localization.Language.StartForm_Close_Message}";
+            string caption = $"{Localization.Language.StartForm_Close_Caption}";
             const MessageBoxIcon icon = MessageBoxIcon.Question;
             const MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             const MessageBoxDefaultButton defaultBtn = MessageBoxDefaultButton.Button2;
@@ -198,7 +198,7 @@ namespace ShellBag.GUI.Views
             _export.Clear();
 
             this.UseWaitCursor = true;
-            toolStripStatusLabel.Text = "Lade ShellBags...";
+            toolStripStatusLabel.Text = $@"{Localization.Language.StartForm_LoadShellBags_Status}";
 
             var stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
@@ -223,14 +223,14 @@ namespace ShellBag.GUI.Views
 
             TreeViewHintLabel.Hide();
             this.UseWaitCursor = false;
-            toolStripStatusLabel.Text = "Bereit!";
+            toolStripStatusLabel.Text = $@"{Localization.Language.StartForm_Ready}";
 
-            toolStripStatusCountLabel.Text = "Knotenanzahl: " + global_count.ToString();
-            toolStripStatusLoadTimeLabel.Text = "Ladezeit: " + stopwatch.ElapsedMilliseconds.ToString() + "ms";
+            toolStripStatusCountLabel.Text = "Knotenanzahl: " + global_count.ToString(CultureInfo.CurrentCulture);
+            toolStripStatusLoadTimeLabel.Text = "Ladezeit: " + stopwatch.ElapsedMilliseconds.ToString(CultureInfo.CurrentCulture) + "ms";
             toolStripStatusCountLabel.Visible = true;
             toolStripStatusLoadTimeLabel.Visible = true;
 
-            dataGridViewHintLabel.Text = "Bitte wählen Sie ein Kindelement aus der linken Seite.";
+            dataGridViewHintLabel.Text = Language.StartForm_LoadShellBags_datagridViewHintLabel;
         }
         /// <summary>
         /// 
@@ -256,7 +256,9 @@ namespace ShellBag.GUI.Views
                     RootFolderShellItem r => Enum.IsDefined(typeof(SortIndex), r.SortIndex) ? $"{r.SortIndex}" : $"SortIndex (unknown): {string.Format(CultureInfo.CurrentCulture, "0x{0:X2}", (int)r.SortIndex)}",
                     FileEntryShellItem f => $"{f.PrimaryName}",
                     UnknownShellItem u => $"ShellItem (unknown): {string.Format(CultureInfo.CurrentCulture, "0x{0:X2}", u.ClassType)}",
+#pragma warning disable CA1303
                     _ => throw new ArgumentOutOfRangeException(nameof(nodes), "node.Value.ShellItem has undefinded shell item")
+#pragma warning restore CA1303
                 };
 
                 if (node.Value != null)
@@ -281,10 +283,12 @@ namespace ShellBag.GUI.Views
             // Empty Column Header
             dataGridView1.Columns.Add("", "");
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            FontFamily fontFamily = new FontFamily("Arial");
             // Make First Column Items Bold, etc.
-            Font font = new Font(fontFamily, 12, FontStyle.Bold, GraphicsUnit.Pixel);
-            dataGridView1.Columns[0].DefaultCellStyle.Font = font;
+            using (FontFamily fontFamily = new FontFamily("Arial"))
+            {
+                Font font = new Font(fontFamily, 12, FontStyle.Bold, GraphicsUnit.Pixel);
+                dataGridView1.Columns[0].DefaultCellStyle.Font = font;
+            }
 
             switch (node.ShellItem)
             {
@@ -304,7 +308,9 @@ namespace ShellBag.GUI.Views
                     RenderUnknownItem(ref u);
                     break;
                 default:
+#pragma warning disable CA1303
                     throw new Exception("Unknown ShellItem Type");
+#pragma warning restore CA1303
             }
             dataGridViewHintLabel.Visible = false;
         }
@@ -318,7 +324,7 @@ namespace ShellBag.GUI.Views
             dataGridView1.Rows.Add("Size:", root.Size + " Bytes");
             dataGridView1.Rows.Add("GUID:", root.GlobalId.ToString());
             dataGridView1.Rows.Add("SortIndex:", root.SortIndex + $" ({string.Format(CultureInfo.CurrentCulture, "0x{0:X2}", (int)root.SortIndex)})");
-            dataGridView1.Rows.Add("RawData:", BitConverter.ToString(root.Data.ToArray()));
+            dataGridView1.Rows.Add("RawData:", BitConverter.ToString(root.RawData.ToArray()));
         }
 
         private void RenderVolumeItem(ref VolumeShellItem volume)
@@ -331,7 +337,7 @@ namespace ShellBag.GUI.Views
             {
                 dataGridView1.Rows.Add("DriveLetter:", volume.DriveLetter);
             }
-            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(volume.Data.ToArray()));
+            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(volume.RawData.ToArray()));
         }
 
         private void RenderNetworkItem(ref NetworkLocationShellItem network)
@@ -341,7 +347,7 @@ namespace ShellBag.GUI.Views
             dataGridView1.Rows.Add("Size:", network.Size + " Bytes");
             dataGridView1.Rows.Add("UncPath:", network.Names.UncPath + $" ({network.Names.MicrosoftNetwork})");
             dataGridView1.Rows.Add("Description:",network.Names.Description);
-            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(network.Data.ToArray()));
+            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(network.RawData.ToArray()));
         }
 
         private void RenderFileEntryItem(ref FileEntryShellItem file)
@@ -365,13 +371,24 @@ namespace ShellBag.GUI.Views
                 dataGridView1.Rows.Add("Beef-Size:",string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", file.BeefType.Size));
                 dataGridView1.Rows.Add("Beef-Version:", string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", file.BeefType.Version));
                 dataGridView1.Rows.Add("Beef-Signature:",file.BeefType.Signature.ToString());
+
+
+                switch (file.BeefType)
+                {
+                    case Beef0004 beef0004:
+                        dataGridView1.Rows.Add("Creation DateTime:", beef0004.CreationDateTime + " (UTC)");
+                        dataGridView1.Rows.Add("LastAccess DateTime:", beef0004.LastAccessDateTime + " (UTC)");
+                        dataGridView1.Rows.Add("SecondaryName:", beef0004.SecondaryName);
+                        break;
+                }
+
             }
             else
             {
                 dataGridView1.Rows.Add("BeefType:", "null");
             }
 
-            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(file.Data.ToArray()));
+            dataGridView1.Rows.Add("RawData:",BitConverter.ToString(file.RawData.ToArray()));
         }
 
         private void RenderUnknownItem(ref UnknownShellItem unknown)
@@ -379,7 +396,7 @@ namespace ShellBag.GUI.Views
             dataGridView1.Columns.Add(nameof(UnknownShellItem), $"ShellItem: {nameof(UnknownShellItem)}");
             dataGridView1.Rows.Add("ClassType:", string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", unknown.ClassType));
             dataGridView1.Rows.Add("Size:", unknown.Size + " Bytes");
-            dataGridView1.Rows.Add("RawData",BitConverter.ToString(unknown.Data.ToArray()));
+            dataGridView1.Rows.Add("RawData",BitConverter.ToString(unknown.RawData.ToArray()));
         }
     }
 }

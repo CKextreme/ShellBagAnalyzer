@@ -1,6 +1,8 @@
-﻿using ShellBag.Library.ShellBags.ShellItems.Others;
+﻿using System;
+using ShellBag.Library.ShellBags.ShellItems.Others;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ShellBag.Library.ShellBags.ShellItems
 {
@@ -16,7 +18,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
         /// <summary>
         /// Constructor
         /// </summary>
-        public NetworkLocationShellItem(ushort size, byte type, IEnumerable<byte> data) : base(size, type, data)
+        public NetworkLocationShellItem(IEnumerable<byte> rawData) : base(rawData)
         {
             AnalyzeData();
         }
@@ -29,7 +31,7 @@ namespace ShellBag.Library.ShellBags.ShellItems
             const int skip = 5; 
             // end of string mark (2 bytes)
             var take = Size - skip - 2;
-            var name = Data.Skip(skip).Take(take);
+            var name = RawData.Skip(skip).Take(take);
 
             string temp = "";
             var list = new List<string>();
@@ -54,6 +56,17 @@ namespace ShellBag.Library.ShellBags.ShellItems
             var extra = list.Count > 2 ? list.ElementAt(2) : string.Empty;
 
             Names = new UncNames(path, network, extra);
+        }
+
+        /// <summary>
+        /// Custom ToString method.
+        /// </summary>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append($" , UncPath: {Names.UncPath} ({Names.MicrosoftNetwork}) , Description: {Names.Description}");
+            return sb.ToString();
         }
     }
 }

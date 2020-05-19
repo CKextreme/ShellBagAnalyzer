@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using ShellBag.Library.ShellBags.ShellItems.ExtensionBlocks;
 
 namespace ShellBag.Library.ShellBags.Logging
 {
@@ -54,7 +55,7 @@ namespace ShellBag.Library.ShellBags.Logging
             {
                 var classtype = string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", rootNode.ShellItem.ClassType);
                 var size = rootNode.ShellItem.Size + " Bytes";
-                var rawdata = BitConverter.ToString(rootNode.ShellItem.Data.ToArray());
+                var rawdata = BitConverter.ToString(rootNode.ShellItem.RawData.ToArray());
 
                 switch (rootNode.ShellItem)
                 {
@@ -89,6 +90,13 @@ namespace ShellBag.Library.ShellBags.Logging
                             var beefversion = string.Format(CultureInfo.CurrentCulture, "0x{0:X4}", f.BeefType.Version);
                             var beefsignature = f.BeefType.Signature.ToString();
                             beeftext = $"BeefSize={beefsize} ; BeefVersion={beefversion} ; BeefSignature={beefsignature}";
+
+                            switch (f.BeefType)
+                            {
+                                case Beef0004 beef0004:
+                                    beeftext += $" ; Creation DateTime: {beef0004.CreationDateTime} (UTC) ; LastAccess DateTime: {beef0004.LastAccessDateTime} (UTC) ; SecondaryName: {beef0004.SecondaryName}";
+                                    break;
+                            }
                         }
                         else
                         {

@@ -1,10 +1,16 @@
-﻿namespace ShellBag.Library.ShellBags.ShellItems.ExtensionBlocks
+﻿using System.Collections.Generic;
+
+namespace ShellBag.Library.ShellBags.ShellItems.ExtensionBlocks
 {
     /// <summary>
     /// <see cref="IExtensionBlock"/>
     /// </summary>
     public interface IExtensionBlock
     {
+        /// <summary>
+        /// Contains the data of the extension block part.
+        /// </summary>
+        IEnumerable<byte> BeefData { get; }
         /// <summary>
         /// Contains the size for the extension block.
         /// </summary>

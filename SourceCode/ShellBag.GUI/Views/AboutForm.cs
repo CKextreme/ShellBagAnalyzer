@@ -13,6 +13,8 @@ namespace ShellBag.GUI.Views
         public AboutForm()
         {
             InitializeComponent();
+            // remove default selection
+            ActiveControl = label1;
         }
     }
 }

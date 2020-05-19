@@ -11,4 +11,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="StartForm_Shown_AdminRights" xml:space="preserve">
+    <value>(with admin rights)</value>
+  </data>
+  <data name="StartForm_Shown_NoAdminRights" xml:space="preserve">
+    <value>(no admin rights)</value>
+  </data>
+  <data name="StartForm_ComboBoxChanged_Name" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="ShellBagsHelper_LoadSidsParallel_NoUsername" xml:space="preserve">
+    <value>No username was found!</value>
+  </data>
+  <data name="StartForm_InitComboBox_Zero" xml:space="preserve">
+    <value>Error: Couldn't find any SIDs (User)!</value>
+  </data>
+  <data name="StartForm_Close_Caption" xml:space="preserve">
+    <value>Close program</value>
+  </data>
+  <data name="StartForm_Close_Message" xml:space="preserve">
+    <value>Do you really want to close the program?</value>
+  </data>
+  <data name="StartForm_ChangeToolStripLabelPath_Text" xml:space="preserve">
+    <value>Path:</value>
+  </data>
+  <data name="StartForm_ctr_combotxtDefault" xml:space="preserve">
+    <value>Select an available user SID from the live registry:</value>
+  </data>
+  <data name="StartForm_TextDateitxtToolStripMenuItem_SearchPlease" xml:space="preserve">
+    <value>Please search for ShellBag entries first!</value>
+  </data>
+  <data name="StartForm_TextDateitxtToolStripMenuItem_Success" xml:space="preserve">
+    <value>Export finished!</value>
+  </data>
+  <data name="StartForm_LoadShellBags_Status" xml:space="preserve">
+    <value>Loading ShellBags...</value>
+  </data>
+  <data name="StartForm_Ready" xml:space="preserve">
+    <value>Ready!</value>
+  </data>
+  <data name="StartForm_LoadShellBags_datagridViewHintLabel" xml:space="preserve">
+    <value>Please select a child element from the left side.</value>
+  </data>
 </root>
