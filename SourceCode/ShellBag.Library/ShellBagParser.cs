@@ -87,7 +87,6 @@ namespace ShellBag.Library
         private ShellBagNode RecursiveTraverse(RegistryKey parentKey, byte[] data, bool withData)
         {
             var newnode = new ShellBagNode(data);
-            NodesCount++;
             var subKeyNames = parentKey.GetSubKeyNames();
 
             foreach (var key in subKeyNames)
@@ -104,6 +103,7 @@ namespace ShellBag.Library
 #pragma warning restore CA1305 // IFormatProvider angeben
                 var subkeys = RecursiveTraverse(parentKey.OpenSubKey(key), value, withData);
                 newnode.Add(i, subkeys);
+                NodesCount++;
             }
             return newnode;
         }
