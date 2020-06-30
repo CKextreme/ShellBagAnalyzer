@@ -1,12 +1,12 @@
-\section{Qualitätsanforderungen}
+\section{Qualitätsanforderungen} \label{quali}
+\vspace{0.5cm}
 Nachfolgend werden die Qualitätsanforderungen an das Tool erläutert, welche bei der Implementierung berücksichtigt werden müssen, um eine optimale Eignung gewährleisten zu können.
-\paragraph{Kompabilität des Tools:}
-Eine Live-Analyse der ShellBags ist nur auf einem Windows-Betriebssystem möglich, da sie als Teil der Registry nur in Windows-Systemen existieren. Eine Post-Mortem-Analyse der ShellBags mit dem implementierten Tool wird ebenfalls nur auf Windows-Betriebssystemen möglich sein aufgrund der Nutzung des .NET Frameworks, welches nur unter Windows lauffähig ist \cite{netfw}.
-%lauffähigkeit vllt irrelevant, da nur onlineanalyse betrachtet werden
-\paragraph{Sicherheit/Integrität:}
-Im lesenden Modus der ShellBags aus der Windows-Registry dürfen Einträge nicht manipuliert, gelöscht oder eingefügt werden. Im Löschmodus darf keine fehlerhafte Löschung von Einträgen in der Registry erfolgen, da so die Funktionsfähigkeit des Systems eingeschränkt werden könnte.
+\paragraph{Kompatibilität:}
+Da die ShellBags in ihrer Form als Teil der Registry nur für Windows-Betriebssysteme existieren, kann die ShellBag-Live-Analyse auch nur auf Windows-Systemen erfolgen. Das implementierte Tool wird auch aufgrund der Nutzung des .NET Frameworks nur unter diesem Betriebssystem lauffähig sein \cite{netfw}.
+\paragraph{Integrität:}
+Im lesenden Modus der ShellBags aus der Windows-Registry dürfen Einträge nicht manipuliert, gelöscht oder eingefügt werden. Im Exportmodus sollte die hierarchische Struktur der ShellBags erkennbar sein und auch hier dürfen keine Manipulationen erfolgen.
 \paragraph{Zuverlässigkeit:}
-Aus forensischer Sicht soll das Tool auch bei einer größeren Registry oder fehlerhaften Einträgen eine zuverlässige Analyse und auch bei Fehlern einen gewissen Teil-Output ermöglichen.
+Aus forensischer Sicht soll das Tool auch bei fehlerhaften Einträgen eine zuverlässige Analyse und einen gewissen Teil-Output ermöglichen.
 \paragraph{Benutzerfreundlichkeit:}
 Das Programm sollte einfach gestaltet sein und auch Menschen mit geringen Kenntnissen über ShellBags einen leichten Einstieg ermöglichen.
 \paragraph{Leistungseffizienz:}

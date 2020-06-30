@@ -1,3 +1,8 @@
 \section{Ausblick}
-...
-% .net core wäre möglich für andere BS
+\vspace{0.5cm}
+In Zukunft wäre es denkbar, eine Portierung vom .NET Framework auf .NET Core oder .NET 5.0 vorzunehmen. Dies würde die Möglichkeit eröffnen, neben der Live-Analyse auch eine Post-Mortem-Analyse der Windows-ShellBags zu implementieren, deren Auswertung neben Windows- auch auf Linux- oder macOS-Betriebssystemen möglich wäre. Der Vorteil davon wäre somit, dass das Tool eine höhere Kompatibilität aufweist und auf verschiedenen Betriebssystemen lauffähig ist, je nachdem welches Betriebssystem die forensische Workstation besitzt. \cite{netcore,port} \\
+\\
+Weiterhin existieren neben File Entry-, Root Folder-, Volume- und Network Location Shell Items noch andere Arten. In der vorliegenden Arbeit wurden nur die bereits geprüften Erkenntnisse in der Auswertung der ShellBags berücksichtigt. Das Tool sollte daher zukünftig erweitert werden, sofern beispielweise die Informationen von Joachim Metz bezüglich Shell Items bestätigt werden. Auch vor allem die ShellBags in der NTUSER.dat haben noch ein großes Analysepotenzial. \cite{shelltype} \\
+\\
+Außerdem dient das Tool bisher einer forensischen Analyse der ShellBags eines Windows 10 Betriebssystems. Da jedoch Unterschiede zwischen den einzelnen Betriebssystemen existieren, sollte das Tool zukünftig auch um die anderen Betriebssystemversionen erweitert werden, um die Anwendungsfähigkeit des Tools zu erweitern. \cite{ba}
+

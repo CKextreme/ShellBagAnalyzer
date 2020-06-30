@@ -8,7 +8,6 @@
 *.log
 *.synctex.gz
 *.synctex(busy)
-*.bak
 *.bbl
 *.bcf
 *.blg
@@ -26,3 +25,4 @@
 *.out
 *.run.xml
 *.toc
+*.bak

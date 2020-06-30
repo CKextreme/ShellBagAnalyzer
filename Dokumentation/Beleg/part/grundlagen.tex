@@ -1,20 +1,22 @@
 \section{Theoretische Grundlagen}
+\vspace{0.5cm}
 Nachfolgend werden die Grundlagen für ShellBags erläutert, welche für die Implementierung des Tools notwendig sind. Es handelt sich somit nur um einen Auszug der für das Projekt wichtigsten Grundlagen. 
 
 \subsection{Allgemeines}
-Die ShellBag-Schlüssel sind ein Teil der Windows-Registrierungsdatenbank, kurz Registry genannt, welche Konfigurationsdaten des Betriebssystems und seinen Programmen sowie Benutzereinstellungen speichert \cite[S.215]{anson2012mastering}. Die Registry besteht aus fünf Root Keys, von denen zwei als Master Keys bezeichnet werden, die tatsächlich physisch in der Registry abgelegt sind. Die anderen drei Keys sind nur abgeleitet von Schlüsseln unter den beiden Master Keys und sind somit Spiegelungen. \cite[S.219]{anson2012mastering} 
-
+\vspace{0.3cm}
+Die ShellBag-Schlüssel sind ein Teil der Windows-Registrierungsdatenbank, kurz Registry genannt, welche Konfigurationsdaten des Betriebssystems und seinen Programmen sowie Benutzereinstellungen speichert \cite[S.215]{anson2012mastering}. Die Registry besteht aus fünf Root Keys, von denen zwei als Master Keys bezeichnet werden, die tatsächlich physisch in der Registry abgelegt sind. Die anderen drei Keys sind nur abgeleitet von Schlüsseln unter den beiden Master Keys und somit nur Spiegelungen. \cite[S.219]{anson2012mastering} 
+\newpage
 Die fünf Root Keys werden nachfolgend erläutert:
 \begin{itemize}
 	\item \texttt{HKEY\_LOCAL\_MACHINE} ist ein Master Key und wird somit nicht von anderen Keys abgeleitet. Dieser Key enthält Konfigurationsdaten des Computers.
-	\item \texttt{HKEY\_USERS} ist ebenfalls ein Master Key. Dieser Key enthält Informationen über alle Benutzer, die jemals am System eingeloggt waren.
+	\item \texttt{HKEY\_USERS} ist ebenfalls ein Master Key. Dieser Key enthält Informationen über alle Benutzer, die jemals im System eingeloggt waren.
 	\item  \texttt{HKEY\_CURRENT\_USER} ist abgeleitet von einem Schlüssel unter HKU. Er enthält die Einstellungen des aktuell angemeldeten Benutzers.
 	\item \texttt{HKEY\_CLASSES\_ROOT} ist dafür zuständig, dass zu einem bestimmten Dateityp das richtige Programm ausgewählt wird. Dieser Schlüssel wird abgeleitet aus HKLM und HKCU.
 	\item \texttt{HKEY\_CURRENT\_CONFIG} enthält Konfigurationseinstellungen der Hardware und wird abgeleitet von HKLM. \cite[S.219]{anson2012mastering}
 \end{itemize}
-Im Registrierungs-Editor werden die Keys genau in dieser Form dargestellt, allerdings werden die Informationen physisch gesehen in verschiedene Dateien, die sogenannten Hives, ausgelagert. Die Informationen werden somit nicht so zentral und zusammenhängend wie im Registrierungs-Editor, sondern über die gesamte Festplatte verteilt abgelegt. \cite[S.220]{anson2012mastering} 
+Im Registrierungs-Editor werden die Keys genau in dieser Form dargestellt, allerdings werden die Informationen physisch gesehen in verschiedene Dateien, den sogenannten Hives, ausgelagert. Die Informationen werden somit nicht so zentral und zusammenhängend wie im Registrierungs-Editor, sondern über die gesamte Festplatte verteilt abgelegt. \cite[S.220]{anson2012mastering} 
 
-Wo diese Hives tatsächlich auf der Festplatte abgelegt sind, erfährt man unter \texttt{HKEY\_LOCAL\_MA- \newline CHINE$\backslash$SYSTEM$\backslash$CurrentControlSet$\backslash$Control$\backslash$hivelist}. Wenn also das System die Hives in die Registry laden will, wird in diesem Key geprüft, wo die Dateien abgelegt sind. \cite[S.225]{anson2012mastering} \\
+Wo diese Hives tatsächlich auf der Festplatte abgelegt sind, erfährt man unter \texttt{HKEY\_LOCAL\_MA- \newline CHINE$\backslash$SYSTEM$\backslash$CurrentControlSet$\backslash$Control$\backslash$hivelist}. Wenn das System die Hives in die Registry laden will, wird in diesem Key geprüft, wo die Dateien abgelegt sind. \cite[S.225]{anson2012mastering} \\
 \\
 Unter Windows 10 werden die ShellBag-Schlüssel unter den folgenden nutzerspezifischen Hives abgelegt: 
 \begin{itemize}
@@ -26,39 +28,40 @@ Unter Windows 10 werden die ShellBag-Schlüssel unter den folgenden nutzerspezif
 Im Registrierungs-Editor befinden sich diese Informationen unter \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$ \newline Microsoft$\backslash$Windows$\backslash$Shell} bzw. unter\ \  \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Classes$\backslash$Local Settings$\backslash$ \newline Software$\backslash$Microsoft$\backslash$Windows$\backslash$Shell}. \newline
 Die beiden wichtigsten Schlüssel in den ShellBags sind \glqq BagMRU\grqq{} und \glqq Bags\grqq{}. Während \glqq Bags\grqq{} vom Benutzer definierte Einstellungen wie Fenstergröße, -position und Art der Ansicht speichert, enthält der \glqq BagMRU\grqq{}-Key die Verzeichnisstruktur mit den dazugehörigen Ordnernamen. \cite{lo2014windows} 
 
-Der \glqq BagMRU\grqq{}-Key ist somit vor allem für forensische Analysen besonders relevant. In der Bachelorarbeit von Anna-Lena Totzauer konnte herausgefunden, werden, dass die wichtigsten Informationen bezüglich Ordneraktivitäten unter \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Classes$\backslash$Local Settings$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$Shell$\backslash$BagMRU} zu finden sind.  \cite{ba} \newline
+Der \glqq BagMRU\grqq{}-Key ist somit vor allem für forensische Analysen besonders relevant. In der Bachelorarbeit von Anna-Lena Totzauer wurde herausgefunden, dass die wichtigsten Informationen bezüglich Ordneraktivitäten unter \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Classes$\backslash$Local Settings$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$Shell$\backslash$BagMRU} zu finden sind.  \cite{ba} \newline
 Nach Joachim Metz existieren verschiedene Arten von Shell Items, die aufgrund von Ordnerakivitäten angelegt werden. So gibt es die File Entry Shell Items, welche vom Benutzer angelegte Ordner bzw. ZIP-komprimierte Ordner repräsentieren sowie Root Folder- und Volume Shell Items, welche jeweils standardmäßig vorhandene Ordner darstellen. Um welche Art von Shell Item es sich handelt, bestimmt der Class Type Indicator im jeweiligen Value. \cite{shelltype} 
 
 Anhand der ShellBag-Informationen von Conny Karras konnte eine weitere Erkenntnis gewonnen werden. Hier konnten neben File Entry-, Root Folder- und Volume Shell Items in der USRCLASS.dat auch Informationen in der NTUSER.dat festgestellt werden. Die nachfolgende Abbildung \ref{img:net} zeigt einen entstandenen Value.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{part/_images/shared.png}
+	\includegraphics[width=0.8\textwidth]{part/shared.png}
 	\caption{Value aus der NTUSER.dat, der das HSMW-Laufwerk repräsentiert} 
 	\label{img:net}
 \end{figure}
 
-Die Values der in der NTUSER.dat gefundenen ShellBag-Einträge hatten den Class Type Indicator 0xC3. Dieser Indicator konnte ebenfalls von Joachim Metz bereits beobachtet werden. Er ordnete diese Art in die Gruppe der Network Location Shell Items ein. Der Name, der im Value dargestellt wird, zeigt, dass es sich bei diesen Shell Items um sogenannte Shared Folders, also freigegebene Ordner handelt. Eine solche Ordnerfreigabe ist auch an der Hochschule Mittweida möglich, um über VPN auch von außerhalb der Hochschule beispielsweise auf den Windows-Home-Bereich zugreifen zu können. Da also Shell Items auch in der NTUSER.dat gespeichert werden können, ist somit für die Analyse im Tool auch der Pfad \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$Shell$\backslash$BagMRU} relevant \cite{shelltype,hsmw}
-%Sofern auf eine Dateifreigabe im Netzwerk eine permanente Verbindung eingerichtet wird, entsteht ein Netzlaufwerk, das als virtuelles Laufwerk die Ordner und Dateien eines Servers auf dem Client wie gewohnt anzeigt. Alternativ können Dateifreigaben auch ohne Netzlaufwerk benutzt werden, indem Verzeichnisse oder Dateien über die Uniform Naming Convention, d. h. in der Form \\servername\freigabename\dateiname, direkt angesprochen werden.
+Einige Values der in der NTUSER.dat gefundenen ShellBag-Einträge hatten den Class Type Indicator 0xC3. Dieser Indicator konnte ebenfalls von Joachim Metz bereits beobachtet werden. Er ordnete diese Art in die Gruppe der Network Location Shell Items ein. Der Name, der im Value dargestellt wird, zeigt, dass es sich bei diesen Shell Items um sogenannte Shared Folders, also freigegebene Ordner handelt. Eine solche Ordnerfreigabe ist auch an der Hochschule Mittweida möglich, um über VPN auch von außerhalb der Hochschule beispielsweise auf den Windows-Home-Bereich zugreifen zu können. Da also Shell Items auch in der NTUSER.dat gespeichert werden können, ist somit für die Analyse im Tool auch der Pfad \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$Shell$\backslash$BagMRU} relevant. \cite{shelltype,hsmw}
 
 Die Kategorisierung der verschiedenen Shell Items muss bei der Implementierung des Tools beachtet werden, um die Einträge voneinander unterscheiden zu können, da die Shell Items unterschiedliche Strukturen aufweisen.
 
 \subsection{Beispiel: Value eines File Entry Shell Items}
-Für die Visualisierung der ShellBag-Informationen im selbst implementierten  Tool sind die Pfade \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Classes$\backslash$Local Settings$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$ \newline Shell$\backslash$BagMRU} und \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$Shell$\backslash$BagMRU} für die Ordneraktivitäten aller angemeldeten Benutzer besonders relevant. Hier müssen die entstandenen Values berücksichtigt werden, die verschiedene Arten von Shell Items repräsentieren. \newline
-Die nachfolgende Abbildung \ref{img:value} zeigt beispielhaft den Value eines File Entry Shell Items, welcher sich unter dem zuvor genannten Pfad befindet. Je nachdem, um welche Art von Shell Item es sich handelt, müssen die verschiedenen Strukturen berücksichtigt werden. So weisen Root Folder bzw. Volume Shell Items eine andere Struktur in den Values auf als der hier abgebildete Value eines File Entry Shell Items.
+\vspace{0.3cm}
+Für die Visualisierung der ShellBag-Informationen im selbst implementierten  Tool sind die Pfade \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Classes$\backslash$Local Settings$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$ \newline Shell$\backslash$BagMRU} und \texttt{HKU$\backslash$SID\_User$\backslash$Software$\backslash$Microsoft$\backslash$Windows$\backslash$Shell$\backslash$BagMRU} für die Ordneraktivitäten besonders relevant. Hier müssen die entstandenen Values berücksichtigt werden, die verschiedene Arten von Shell Items repräsentieren. \newline
+Die nachfolgende Abbildung \ref{img:value} zeigt beispielhaft den Value eines File Entry Shell Items. Je nachdem, um welche Art von Shell Item es sich handelt, müssen die verschiedenen Strukturen berücksichtigt werden. So weisen Root Folder- bzw. Volume Shell Items eine andere Struktur in den Values auf als der hier abgebildete Value eines File Entry Shell Items.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{part/_images/value.png}
+	\includegraphics[width=0.8\textwidth]{part/value.png}
 	\caption{Ausschnitt des Values eines File Entry Shell Items, adaptiert nach \cite{lo2014windows}} 
 	\label{img:value}
 \end{figure}
-Die hier abgebildeten Werte müssen im Little-Endian-Format interpretiert werden. Der Class Type Indicator an Offset 0x02 beträgt 0x31 und steht für einen vom Benutzer angelegten Ordner. Wie zu erkennen ist, sind alle drei Zeitstempel identisch. Im Rahmen der Bachelorarbeit wurde herausgefunden, dass es sich bei den MS-DOS Date and Time Zeitstempeln um die UTC-Zeit handelt, an dem der Ordner angelegt wurde. Somit ist die Creation Date and Time die einzig korrekte Zeit im Value. Die Ursache dafür liegt in der Master File Table des NTFS-Dateisystems, aus welcher die Zeitstempel stammen. \cite{ba} 
+Die hier abgebildeten Werte müssen im Little-Endian-Format interpretiert werden. Der Class Type Indicator an Offset 0x02 beträgt 0x31 und steht für einen vom Benutzer angelegten Ordner. Die UTC-Zeitstempel sind im Format MS-DOS Date and Time gespeichert. \cite{ba,shelltype} 
 
 \subsection{Typen von Shell Items}
+\vspace{0.3cm}
 Wie zuvor erwähnt, existieren verschiedene Arten von Shell Items, welche durch den Class Type Indicator im jeweiligen Value definiert werden. Dieser sollte somit bei der Auswertung im implementierten Tool zuerst analysiert werden, um die Struktur des Values bestimmen zu können. 
 
-Die nachfolgenden Tabellen zeigen die Informationen der verschiedenen Shell Items, die im implementierten Tool dargstellt werden sollen. Wichtig ist, dass die Informationen im Little-Endian-Format gelesen werden müssen. Die Offsets sind im Hexadezimalformat dargestellt. \newline
+Die nachfolgenden Tabellen zeigen die Informationen der verschiedenen Shell Items, die im implementierten Tool dargstellt werden sollen. Wichtig ist, dass es sich bei den Informationen um das Little-Endian-Format handelt. Die Offsets sind im Hexadezimalformat dargestellt. \newline
 Die wichtigsten Informationen der \textbf{Root Folder Shell Items} sind in Tabelle \ref{rfs} dargestellt.
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.5\textwidth}|}
@@ -70,9 +73,9 @@ Die wichtigsten Informationen der \textbf{Root Folder Shell Items} sind in Tabel
 	\hline
 	0x02 & 1 & Class Type Indicator = 0x1F \\
 	\hline
-	0x03 & 1 & Sort Index (Spezifizierung des Typs, siehe Tabelle) \\
+	0x03 & 1 & Sort Index (Spezifizierung des Typs, siehe Tabelle \ref{sort}) \\
 	\hline
-	0x04 & 16 & GUID der Form XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, eindeutig für jeden Typ (8 Byte von links im Little-Endian-Format lesen, 8 Byte von rechts im Big-Endian-Format lesen \cite{ba}) \\
+	0x04 & 16 & GUID der Form XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, eindeutig für jeden Typ \cite{guids} (eine Liste bekannter GUIDs hat Joachim Metz zusammengestellt \footnote{\url{https://github.com/libyal/libfwsi/wiki/Shell-Folder-identifiers}, zuletzt verfügbar am 07.05.2020})  \\
 	\hline
 \end{longtable}
 \vspace{1em}
@@ -92,7 +95,7 @@ Die Sort Indizes der Root Folder Shell Items sind in Tabelle \ref{sort} aufgelis
 	\hline
 	0x48 & My Documents \\
 	\hline
-	0x50 & My Computer \\
+	0x50 & My Computer/ Dieser PC \\
 	\hline
 	0x58 & My Network Places/ Network \\
 	\hline
@@ -102,7 +105,8 @@ Die Sort Indizes der Root Folder Shell Items sind in Tabelle \ref{sort} aufgelis
 	\hline
 \end{longtable}
 \vspace{1em}
-
+Möglicherweise existieren Shell Items mit dem Class Type Indicator von 0x1F, die nicht der Struktur von Root Folder Shell Items entsprechen. Nach Metz wurde ein solches Item in die Kategorie der Users Property View Delegate Items eingeordnet. Um eine falsche Klassifizierung in die Gruppe der Root Folder Shell Items zu vermeiden, wird im Folgenden davon ausgegangen, dass Root Folder Shell Items eine Länge von 20 Bytes (0x14) besitzen. \\
+\\
 Die wichtigsten Informationen der \textbf{Volume Shell Items} sind in Tabelle \ref{volume} dargestellt.
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.5\textwidth}|}
@@ -114,10 +118,15 @@ Die wichtigsten Informationen der \textbf{Volume Shell Items} sind in Tabelle \r
 	\hline
 	0x02 & 1 & Class Type Indicator = 0x20-0x2F \\
 	\hline
+	(0x03) & (3) & (Laufwerksbuchstabe bei Class Type Indicator = 0x2F) \\
+	\hline
 \end{longtable}
 \vspace{1em}
-%\textbf{Conny: Vllt könntest du auch nochmal auf der Seite von Metz schauen nach dem Class Type Indicator von Volume Shell Items, iwie verstehe ich den Text nicht mit bitmask???, ich denke Indikator 20-2f, Netzlaufwerk hatte bei mir Indicator von 0x2F - wahrscheinlich ist das auch ein Volume shell item mit Laufwerksbuchstabe an Offset 0x03 für 3 Byte, siehe BA Präsentation + welchen Inidcator zeigt es dir bei USB-Sticks an? bei mir 1F}
-%Nach der Bachelorarbeit von Anna-Lena Totzauer besitzen Netzlaufwerke als Volume Shell Items einen Class Type Indicator von 0x2F. Der Laufwerksbuchstabe befindet sich an Offset 0x03 für 3 Byte. \cite{ba} \newline
+Es konnte herausgefunden werden, dass Volume Shell Items mit dem Class Type Indicator von 0x2F Laufwerke darstellen. Dies betrifft sowohl lokale, feste Laufwerke als auch freie Laufwerksbuchstaben, welche vergeben werden, sobald ein externes Speichermedium angeschlossen wird. Für diese Volume Shell Items existiert somit neben der Größe des ShellBag-Eintrages und dem Class Type Indicator eine weitere Information an Offset 0x03 für 3 Byte und das ist der Laufwerksbuchstabe des jeweiligen Laufwerkes in der Form \glqq C:$\backslash$\grqq{}. Ein solches Shell Item wurde von Joachim Metz als gefundener Eintrag unter der Kategorie der Volume Shell Items vermerkt, jedoch ohne weitere Informationen. \cite{shelltype}
+
+Für die anderen Volume Shell Items existieren bisher noch keine weiteren bestätigten und überprüften Informationen. Möglicherweise enthalten Volume Shell Items noch Extension Blocks, welche jedoch noch näher analysiert werden sollten. So wurden beispielweise Extension Blocks der Signatur 0xBEEF0026 gesichtet. Dies bedarf weiterer Analysen. \\
+\\
+
 Die wichtigsten Informationen der \textbf{File Entry Shell Items} sind in Tabelle \ref{fes} dargestellt.
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.5\textwidth}|}
@@ -129,26 +138,29 @@ Die wichtigsten Informationen der \textbf{File Entry Shell Items} sind in Tabell
 	\hline
 	0x02 & 1 & Class Type Indicator = 0x31 für Ordner, = 0x32 für ZIP-komprimierte Ordner \\
 	\hline
-	0x08 & 4 & Modification Date and Time (entspricht Creation Date and Time) \\
+	0x03 & 5 & unbekannt \\
 	\hline
-	0x0E & variabel & Primary Name (kurzer Name) \\
+	0x08 & 4 & Modification Date and Time im Format MS-DOS Date and Time \\
 	\hline
-	variabel & variabel & Beginn Extension Block (die folgenden Offsets verstehen sich innerhalb des Extension Blocks)\\
+	0x0E & variabel & Primary Name = kurzer Name (teilweise wird auch der Long File Name im Format \glqq 6 Zeichen + \raisebox{-0.9ex}{\~{}} + Ziffer + . + 3 Zeichen Dateiendung\grqq{} in Großbuchstaben abgelegt, wenn der Ordnername nicht der 8.3-Namenskonvention von insgesamt maximal 12 Zeichen entspricht \cite[Chapter 5]{achtdrei}) \\
+	\hline
+	variabel & variabel & Beginn Extension Block EB (die folgenden Offsets verstehen sich innerhalb des Extension Blocks)\\
 	\hline
 	0x00 & 2 & Größe Extension Block \\
 	\hline
-	0x02 & 2 & Extension Version (0009 steht für Windows 8.1 oder Windows 10) \\
+	0x02 & 2 & Extension Version (0x0009 steht für Windows 8.1 oder Windows 10) \\
 	\hline
 	0x04 & 4 & Extension Block Signatur (0xBEEF0004) \\
 	\hline
 	0x08 & 4 & Creation Date and Time im Format MS-DOS Date and Time \\
 	\hline
-	0x0C & 4 & Last Access Date and Time (entspricht Creation Date and Time)\\
+	0x0C & 4 & Last Access Date and Time im Format MS-DOS Date and Time \\
 	\hline
-	variabel & variabel & Secondary Name (langer Name, außerhalb des Extension Blocks)\\
+	variabel im EB & variabel & Secondary Name = langer Name \\
 	\hline
 \end{longtable}
 \vspace{1em}
+\newpage
 Die wichtigsten Informationen der \textbf{Network Location Shell Items} sind in Tabelle \ref{netw} aufgelistet.
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.5\textwidth}|}
@@ -160,12 +172,13 @@ Die wichtigsten Informationen der \textbf{Network Location Shell Items} sind in 
 	\hline
 	0x02 & 1 & Class Type Indicator = 0xC3 \\
 	\hline
-	0x05 & variabel & Ort des freigegebenen Ordners \\
+	0x03 & 1 & unbekannt \\
+	\hline
+	0x04 & 1 & unbekannt (Flags) \\
+	\hline
+	0x05 & variabel & UNC-Pfad (Universal Naming Convention) des Ordners der Form $\backslash$$\backslash$Servername$\backslash$Ordnername beendet durch den \glqq end-of-string character\grqq{} 0x00 \\
+	\hline
+	variabel & variabel & ggf. Beschreibungen oder Kommentare beendet durch den \glqq end-of-string character\grqq{} 0x00\\
 	\hline
 \end{longtable}
 \vspace{1em}
-
-
-
-
-

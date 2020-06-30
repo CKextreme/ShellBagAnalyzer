@@ -1,3 +1,8 @@
-\section{Fazit}
-...
-%durch .net framework nur für windows möglich
+\section{Zusammenfassung und Fazit}
+\vspace{0.5cm}
+Ziel dieser Arbeit war es, ein Tool zu implementieren, welches eine forensische Live-Analyse von ShellBags unter Windows 10 ermöglicht. Die im Voraus festgelegten Qualitätsanforderungen an das Tool konnten entsprechend umgesetzt und somit erfüllt werden. Die einzige Voraussetzung für die Inbetriebnahme des \glqq ShellBag Analyzers\grqq{} ist die Installation des .NET Frameworks 4.8, welches auf Windows-Systemen verfügbar ist. \\
+\\
+Als Eingabe für die Software dienen die ShellBag-Einträge der USRCLASS.dat und NTUSER.dat unter BagMRU. Im Verarbeitungsschritt werden diese Einträge gelesen und in eine lesbare Form umgewandelt. Grundlegende Fehler, die zu inkorrekten Informationen im Tool führen könnten, wurden entsprechend abgefangen. Die Ausgabe gliedert sich in zwei Teile. Zum einen erfolgt ein Überblick über alle ShellBag-Einträge der USRCLASS.dat und NTUSER.dat als Baumstruktur. Dies stellt einen optischen Bezug zum Registrierungs-Editor dar. Zum anderen erfolgt eine Visualisierung der Informationen, je nach Art des Shell Items, in einer für den Menschen unmittelbar lesbaren Form. Darüber hinaus ist  es möglich, diese Informationen zu exportieren, um die Ausgabe sicherzustellen. \\
+\\
+Der \glqq ShellBag Analyzer\grqq{} liefert eine Grundlage, um ShellBag-Informationen automatisch auszuwerten. Da das Tool bisher auf bereits geprüften Erkenntnissen über Shell Items basiert, ist es durchaus denkbar, das Programm zukünftig um weitere Shell Items zu erweitern, um die Auswertung zu vervollständigen. Eine Grundlage wurde durch dieses Tool geschaffen.
+
